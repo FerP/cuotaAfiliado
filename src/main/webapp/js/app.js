@@ -65,8 +65,12 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipodocumento/selection/:page/:rpp', {templateUrl: 'js/tipodocumento/selection.html', controller: 'TipodocumentoSelectionController'});
         
         
-        
-        $routeProvider.when('/tipousuario/selection/:page/:rpp', {templateUrl: 'js/tipousuario/selection.html', controller: 'TipousuarioSelectionController'});        
+     
+        $routeProvider.when('/tipousuario/selection/:page/:rpp', {templateUrl: 'js/tipousuario/selection.html', controller: 'TipousuarioSelectionController'});   
+        $routeProvider.when('/tipousuario/new/:id', {templateUrl: 'js/tipousuario/new.html', controller: 'TipousuarioNewController'});
+        $routeProvider.when('/tipousuario/edit/:id', {templateUrl: 'js/tipousuario/edit.html', controller: 'TipousuarioEditController'});
+        $routeProvider.when('/tipousuario/plist/:page?/:rpp?', {templateUrl: 'js/tipousuario/plist.html', controller: 'TipousuarioPListController'});
+        $routeProvider.when('/tipousuario/remove/:id', {templateUrl: 'js/tipousuario/remove.html',   controller: 'TipousuarioRemoveController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
 
