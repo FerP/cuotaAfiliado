@@ -100,8 +100,8 @@ THE SOFTWARE.
                                 <p></p>
                                 <p>Campos visibles:</p>
                                 <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
-                                <input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login" >Login
-                                <input type="checkbox" ng-model="visibles.password" ng-checked="visibles.password">Password
+                                <input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion" >Descripcion
+                                
 
 
                                 <p></p>
@@ -118,13 +118,8 @@ THE SOFTWARE.
                                 <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
                                     <option style="display:none">selecciona un campo</option>                                    
                                     <option value="id">Identificador</option>
-                                    <option value="login">Login</option>
-                                    <option value="password">Password</option>
-                                    <option value="id_tipousuario">Tipo</option>
-                                    <option value="id_estado">Estado</option>
-                                    <option value="ciudad">Ciudad</option>
-                                    <option value="firma">Firma</option>
-                                    <option value="skin">Skin</option>
+                                    <option value="descripcion">Descripción</option>
+                                    
                                 </select>
                                 <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                     <option style="display:none">selecciona una operacion</option>
@@ -178,42 +173,12 @@ THE SOFTWARE.
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.login">
+                    <th ng-show="visibles.descripcion">
                         Login
-                        <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                        <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=descripcion&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=descripcion&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.password">
-                        Password
-                        <a ng-show="visibles.password" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=password&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.password" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=password&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
-                    <th>
-                        Estado
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_estado&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_estado&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th>
-                        Tipo
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th>
-                        Ciudad
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=ciudad&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=ciudad&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th>
-                        Firma
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=firma&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=firma&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th>
-                        Skin
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=skin&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=skin&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
+               
                     <th>
                         Acciones
                     </th>
@@ -222,13 +187,7 @@ THE SOFTWARE.
             <tbody>
                 <tr ng-repeat="obj in page">
                     <td ng-show="visibles.id" class="text-right">{{obj.id}}</td>
-                    <td ng-show="visibles.login">{{obj.login}}</td>
-                    <td ng-show="visibles.password">{{obj.password}}</td>
-                    <td><a href="#/estado/view/{{obj.obj_estado.id}}">{{obj.obj_estado.tipo}}</a></td>
-                    <td><a href="#/tipousuario/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
-                    <td>{{obj.ciudad}}</td>
-                    <td>{{obj.firma|clipString}}</td>
-                    <td>{{obj.skin}}</td>
+                    <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
                     <td>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

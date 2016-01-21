@@ -30,6 +30,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import net.daw.bean.implementation.EmpresaBean;
 import net.daw.bean.implementation.UsuarioBean;
 import net.daw.dao.publicinterface.TableDaoInterface;
 import net.daw.dao.publicinterface.ViewDaoInterface;
@@ -186,8 +187,10 @@ public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
             }
             return oUsuario;
         } catch (Exception e) {
-            throw new Exception("UsuarioDao.getFromLogin: Error: " + e.getMessage());
+            throw new Exception("EmpresaDao.getFromLogin: Error: " + e.getMessage());
         }
     }
 
 }
+
+

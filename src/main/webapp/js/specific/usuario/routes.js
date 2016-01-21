@@ -30,9 +30,9 @@ function fUsuarioRoutes() {
     var icon = '<i class="fa fa-file-text-o fa-5x"></i>';
     var fillDocumentoPageHeader = _.partial(init.getPageHeader, icon, 'Usuario', _);
     var strClass = 'usuario';
-    var header=$('#broth_panel_heading');
+    var header = $('#broth_panel_heading');
     var content = $('#broth_content');
-     //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     Path.map("#/" + strClass + "/remove/:id").to(function () {
         header.empty().append(fillDocumentoPageHeader('Remove'));
         var strParam = init.getUrlObjectFromUrlString(this.params['url']);
@@ -45,7 +45,7 @@ function fUsuarioRoutes() {
         header.empty().append(fillDocumentoPageHeader('New'));
         var strParam = init.getUrlObjectFromUrlString(this.params['url']);
         ausiasFLOW.reset();
-        ausiasFLOW.initialize(usuarioNew, content, strClass, 'new', strParam);
+        ausiasFLOW.initialize(newModule, content, strClass, 'new', strParam);
         return false;
     });
     //--------------------------------------------------------------------------    
@@ -53,7 +53,7 @@ function fUsuarioRoutes() {
         header.empty().append(fillDocumentoPageHeader('Edit'));
         var strParam = init.getUrlObjectFromUrlString(this.params['url']);
         ausiasFLOW.reset();
-        ausiasFLOW.initialize(usuarioEdit, content, strClass, 'edit', strParam);
+        ausiasFLOW.initialize(editModule, content, strClass, 'edit', strParam);
         return false;
     });
     //--------------------------------------------------------------------------

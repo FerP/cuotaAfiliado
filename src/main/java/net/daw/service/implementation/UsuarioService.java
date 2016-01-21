@@ -1,29 +1,3 @@
-/*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * openAUSIAS: The stunning micro-library that helps you to develop easily 
- *             AJAX web applications by using Java and jQuery
- * openAUSIAS is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/openAUSIAS
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package net.daw.service.implementation;
 
 import com.google.gson.Gson;
@@ -33,8 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import net.daw.bean.implementation.EmpresaBean;
+import net.daw.bean.implementation.UsuarioBean;
 import net.daw.bean.implementation.UsuarioBean;
 import net.daw.connection.publicinterface.ConnectionInterface;
+import net.daw.dao.implementation.EmpresaDao;
 import net.daw.dao.implementation.UsuarioDao;
 
 import net.daw.helper.statics.AppConfigurationHelper;
@@ -74,8 +51,8 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
             try {
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
-                UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oUsuarioDao.getCount(alFilter)));
+                UsuarioDao oTipousuarioDao = new UsuarioDao(oConnection);
+                data = JsonMessage.getJson("200", Integer.toString(oTipousuarioDao.getCount(alFilter)));
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
             } finally {
@@ -136,8 +113,8 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
             try {
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
-                UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
-                ArrayList<UsuarioBean> arrBeans = oUsuarioDao.getAll(alFilter, hmOrder, 1);
+                UsuarioDao oTipousuarioDao = new UsuarioDao(oConnection);
+                ArrayList<UsuarioBean> arrBeans = oTipousuarioDao.getAll(alFilter, hmOrder, 1);
                 data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
@@ -170,8 +147,8 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
             try {
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
-                UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
-                List<UsuarioBean> arrBeans = oUsuarioDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
+                UsuarioDao oTipousuarioDao = new UsuarioDao(oConnection);
+                List<UsuarioBean> arrBeans = oTipousuarioDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
                 data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
@@ -283,11 +260,11 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
                 oConnection.setAutoCommit(false);
-                UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
+                UsuarioDao oTipousuarioDao = new UsuarioDao(oConnection);
                 UsuarioBean oUsuarioBean = new UsuarioBean();
                 oUsuarioBean = AppConfigurationHelper.getGson().fromJson(jason, oUsuarioBean.getClass());
                 if (oUsuarioBean != null) {
-                    Integer iResult = oUsuarioDao.set(oUsuarioBean);
+                    Integer iResult = oTipousuarioDao.set(oUsuarioBean);
                     if (iResult >= 1) {
                         resultado = JsonMessage.getJson("200", iResult.toString());
                     } else {
@@ -313,7 +290,7 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
-
+    
     public String login() throws SQLException, Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         String strAnswer = null;
@@ -371,14 +348,6 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
-    public int sessionuserlevel() {
-        String strAnswer = null;
-        UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-        if (oUserBean == null) {
-            return 0;
-        } else {
-            return oUserBean.getId_estado();
-        }
-    }
+    
 
 }

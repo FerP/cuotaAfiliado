@@ -43,7 +43,8 @@ public class ConnectionClassHelper {
             return System.getenv("OPENSHIFT_APP_NAME");
 
         } else {
-            return "ausiasyield2015";
+            return "cuotaafiliado";
+            //return "ausiasyield2015";
             //return "openausiasblog";
             //return "openausias2015";
             //return "ausiasyield2014";

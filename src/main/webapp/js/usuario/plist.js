@@ -37,10 +37,10 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 's
         $scope.visibles.login = true;
         $scope.visibles.password = true;
 
-
+        
         $scope.ob = "usuario";
-        $scope.op = "plist";
-        $scope.title = "Listado de usuarios";
+        $scope.op = "selection";
+        $scope.title = "Selección de tipo usuario";
         $scope.icon = "fa-user";
         $scope.neighbourhood = 2;
 

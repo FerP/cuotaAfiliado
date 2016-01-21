@@ -25,30 +25,20 @@
  * THE SOFTWARE.
  * 
  */
-
-
 'use strict';
 
 
 
 
 
-moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService','$location',
-    function ($scope, $routeParams, serverService, $location) {
-        $scope.title = "Vista de usuario";
-        $scope.icon = "fa-user";
-        $scope.ob = 'usuario';
-        $scope.id = $routeParams.id;                        
-        serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
-            $scope.bean = data.message;
-        });
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/usuario/plist');
-        };
+moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService',
+    function ($scope, $routeParams, serverService) {
         $scope.back = function () {
             window.history.back();
         };
+        $scope.ob = 'usuario';
+        $scope.id = $routeParams.id;
+        serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
+            $scope.bean = data.message;
+        });
     }]);
