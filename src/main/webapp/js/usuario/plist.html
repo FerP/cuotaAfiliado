@@ -144,8 +144,7 @@ THE SOFTWARE.
                             <div class="col-md-12">
                                 <p></p>
                                 <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
-                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
-                                    <input type="submit" class="btn" id="btnFiltrarClient" name="btnFiltrarClient" value="Filtrar">
+                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">                                    
                                 </form>
                                 <p></p>
                             </div>
@@ -168,26 +167,19 @@ THE SOFTWARE.
         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
             <thead>             
                 <tr>                                                   
-                    <th ng-show="visibles.id" class="text-right">
-                        Ident.
+                    <th ng-show="visibles.id" class="text-center">
+                        Ident.<br/>
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.descripcion">
-                        Login
-                        <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=descripcion&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=descripcion&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-               
-                    <th>
                         Acciones
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="obj in page">
+                <tr ng-repeat="obj in page| filter:searchText">
                     <td ng-show="visibles.id" class="text-right">{{obj.id}}</td>
-                    <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
                     <td>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -208,3 +200,7 @@ THE SOFTWARE.
 <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
 
 
+                    <th ng-show="visibles.descripcion">
+                        Login
+                        <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=descripcion&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=descripcion&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>

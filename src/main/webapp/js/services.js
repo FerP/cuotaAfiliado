@@ -50,6 +50,10 @@ angular.module('Services', [])
             }
             ;
             return {
+                date_toDate: function (input) {
+                    var parts = input.split('/');
+                    return new Date(parts[2],parts[1]-1,parts[0]); 
+                },
                 getAppName: function () {
                     var strPath = window.location.pathname;
                     return strPath.substr(1, strPath.substr(1, strPath.length).indexOf('/'));

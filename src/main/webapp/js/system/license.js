@@ -1,10 +1,10 @@
-/*
+/* 
  * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  * 
  * openAUSIAS: The stunning micro-library that helps you to develop easily 
  *             AJAX web applications by using Java and jQuery
  * openAUSIAS is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/openAUSIAS
+ * Sources at https://github.com/rafaelaznar/
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,15 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ * 
  */
-var ebpListModule = function () {
-}
-ebpListModule.prototype = new bpListModule();
-ebpListModule.prototype.loadThButtons = function (meta, strClase, UrlFromParamsWithoutOrder) {
-    return this.button_getTableHeaderButtons(meta.Name, strClase, 'ebpList', UrlFromParamsWithoutOrder);
-}
-ebpListModule.prototype.loadButtons = function (rowValues, strClass) {
-    var botonera = "";
-    botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
-    botonera += '<a class="btn btn-default selector_button" id="' + this.html_getId(rowValues) + '"  href="#"><i class="glyphicon glyphicon-ok"></i></a>';
-    botonera += '</div></div>';
-    return botonera;
-};
-ebpListModule.prototype.bindCallback = function (callbackFunction) {
-    $('.btn.btn-default.selector_button').unbind('click');
-    $('.btn.btn-default.selector_button').click(function (event) {
-        callbackFunction(parseInt($(this).attr('id')))
-        return false;
-    });
-};
+
+'use strict';
+moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+
+        $scope.op = "License";
+
+    }
+]
+        );

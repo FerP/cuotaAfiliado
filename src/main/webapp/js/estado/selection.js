@@ -29,23 +29,12 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
-        $scope.visibles.id = true;
-        $scope.visibles.login = true;
-        $scope.visibles.password = true;
-        $scope.visibles.id_estado = true;
-        $scope.visibles.id_tipousuario = true;
-        $scope.visibles.ciudad = true;
-        $scope.visibles.firma = true;
-        $scope.visibles.skin = true;
+moduloEstado.controller('EstadoSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService) {
 
-        
-        $scope.ob = "usuario";
+        $scope.ob = "estado";
         $scope.op = "selection";
-        $scope.title = "Selección de tipo usuario";
+        $scope.title = "Selección de estado del usuario";
         $scope.icon = "fa-user";
         $scope.neighbourhood = 2;
 
@@ -148,5 +137,10 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 's
             return false;
         };
 
+        $scope.go = function (num) {
+            sharedSpaceService.getObject().obj_estado.id = num;
+            sharedSpaceService.setFase(2);
+            $location.path(sharedSpaceService.getReturnLink());
+        };
 
     }]);

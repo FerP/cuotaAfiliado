@@ -143,8 +143,8 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         try {
             if (oUsuarioBean.getId() == 0) {
                 strSQL = "INSERT INTO " + strTable + " ";
-                strSQL += "(" + oUsuarioBean.getColumns() + ")";
-                strSQL += "VALUES(" + oUsuarioBean.getValues() + ")";
+                strSQL += "(" + oUsuarioBean.getColumns() + ") ";
+                strSQL += "VALUES (" + oUsuarioBean.getValues() + ")";
                 iResult = oMysql.executeInsertSQL(strSQL);
             } else {
                 strSQL = "UPDATE " + strTable + " ";

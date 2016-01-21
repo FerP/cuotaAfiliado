@@ -45,11 +45,13 @@ configuration = {
         })
         $('<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>').appendTo("head");
         $('<link href="vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>').appendTo("head");
-        $('<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>').appendTo("head");
-        $('<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"/>').appendTo("head");
-        $('<link href="http://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css"/>').appendTo("head");
+        $('<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>').appendTo("head");        
+        //these fonts have been located on our server
+        //$('<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"/>').appendTo("head");
+        //$('<link href="http://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css"/>').appendTo("head");
+        $('<link href="css/main/fonts/fonts.css" rel="stylesheet" type="text/css"/>').appendTo("head");        
         $('<link href="css/main/main.css" rel="stylesheet" type="text/css"/>').appendTo("head");
-        $('<link href="css/main/main.css" rel="stylesheet" type="text/css"/>').appendTo("head");
+
         
     }
 }
