@@ -9,6 +9,7 @@ import net.daw.dao.implementation.EmpresaDao;
 import net.daw.dao.implementation.MunicipioDao;
 import net.daw.dao.implementation.SectorDao;
 import net.daw.dao.implementation.UsuarioDao;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class CentroBean implements GenericBean{
 
@@ -140,33 +141,20 @@ public class CentroBean implements GenericBean{
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "nombre:" + nombre + ",";
-        strJson += "direccion:" + direccion + ",";
-        strJson += "cp:" + cp + ",";
+        strJson += "nombre:" + EncodingUtilHelper.quotate(nombre) + ",";
+        strJson += "direccion:" + EncodingUtilHelper.quotate(direccion) + ",";
+        strJson += "cp:" + EncodingUtilHelper.quotate(cp) + ",";
         strJson += "telefono:" + telefono + ",";
         if (expand) {
             strJson += "obj_empresa:" + obj_empresa.toJson(false) + ",";
-
+            strJson += "obj_municipio:" + obj_municipio.toJson(false) + ",";
+            strJson += "obj_sector:" + obj_sector.toJson(false) + ",";
         } else {
             strJson += "id_empresa:" + id_empresa + ",";
-
-        }
-        
-        if (expand) {
-            strJson += "obj_municipio:" + obj_municipio.toJson(false) + ",";
-
-        } else {
             strJson += "id_municipio:" + id_municipio + ",";
-
+            strJson += "id_sector:" + id_sector + ",";
         }
         
-        if (expand) {
-            strJson += "obj_sector:" + obj_sector.toJson(false) + ",";
-
-        } else {
-            strJson += "id_sector:" + id_sector + ",";
-
-        }
         strJson += "}";
         return strJson;
     }
@@ -189,9 +177,9 @@ public class CentroBean implements GenericBean{
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += nombre + ",";
-        strColumns += direccion + ",";      
-        strColumns += cp + ",";
+        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
+        strColumns += EncodingUtilHelper.quotate(direccion) + ",";      
+        strColumns += EncodingUtilHelper.quotate(cp) + ",";
         strColumns += telefono + ",";
         strColumns += id_empresa + ",";
         strColumns += id_municipio + ",";
@@ -204,9 +192,9 @@ public class CentroBean implements GenericBean{
     public String toPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "nombre=" + nombre + ",";
-        strPairs += "direccion=" + direccion + ",";
-        strPairs += "cp=" + cp + ",";
+        strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre)+ ",";
+        strPairs += "direccion=" + EncodingUtilHelper.quotate(direccion) + ",";
+        strPairs += "cp=" + EncodingUtilHelper.quotate(cp) + ",";
         strPairs += "telefono=" + telefono + ",";
         strPairs += "id_empresa=" + id_empresa + ",";
         strPairs += "id_municipio=" + id_municipio + ",";

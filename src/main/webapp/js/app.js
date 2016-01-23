@@ -51,7 +51,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         //------------       $routeProvider.when('/documento/view/:id', {templateUrl: 'js/documento/view.html', controller: 'DocumentoViewController'});       $routeProvider.when('/documento/new', {templateUrl: 'js/documento/new.html', controller: 'DocumentoNewController'});
 
         //------------
-        $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
+        //$routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
         $routeProvider.when('/empresa/view/:id', {templateUrl: 'js/empresa/view.html', controller: 'EmpresaViewController'});
         $routeProvider.when('/empresa/new/', {templateUrl: 'js/empresa/new.html', controller: 'EmpresaNewController'});
         $routeProvider.when('/empresa/edit/:id', {templateUrl: 'js/empresa/edit.html', controller: 'EmpresaEditController'});
@@ -68,6 +68,8 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/selection/:page/:rpp', {templateUrl: 'js/usuario/selection.html', controller: 'UsuarioSelectionController'});   
         $routeProvider.when('/usuario/new', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController'});
+        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html',   controller: 'UsuarioRemoveController'});
+        $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
 
@@ -79,6 +81,5 @@ var moduloEmpresa = angular.module('empresaControllers', []);
 var moduloCentro = angular.module('centroControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
 var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
-        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html',   controller: 'UsuarioRemoveController'});
-        $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
+        
 

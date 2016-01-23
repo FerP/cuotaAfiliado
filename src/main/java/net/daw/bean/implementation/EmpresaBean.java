@@ -1,13 +1,25 @@
 package net.daw.bean.implementation;
 
+import net.daw.bean.publicinterface.GenericBean;
 import com.google.gson.annotations.Expose;
+import static com.sun.jndi.toolkit.dir.SearchFilter.format;
+import static com.sun.xml.internal.bind.unmarshaller.Messages.format;
+import static java.lang.String.format;
+import static java.lang.String.format;
+import static java.lang.String.format;
+import static java.lang.String.format;
+import static java.lang.String.format;
+import static java.lang.String.format;
+import static java.lang.String.format;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import net.daw.bean.publicinterface.GenericBean;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import net.daw.dao.implementation.UsuarioDao;
-import net.daw.dao.implementation.EmpresaDao;
 import net.daw.helper.statics.EncodingUtilHelper;
+
 
 
 public class EmpresaBean implements GenericBean {
@@ -18,8 +30,12 @@ public class EmpresaBean implements GenericBean {
     @Expose
     private String nombre = "";
     @Expose
-
     private String cif = "";
+      @Expose
+    private Date alta = new Date();
+    @Expose
+    private Date cambio = new Date();
+    
     @Expose
     private String contacto = "";
     @Expose
@@ -65,6 +81,22 @@ public class EmpresaBean implements GenericBean {
         this.cif = cif;
     }
 
+    public Date getAlta() {
+        return alta;
+    }
+
+    public void setAlta(Date alta) {
+        this.alta = alta;
+    }
+
+    public Date getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Date cambio) {
+        this.cambio = cambio;
+    }
+
     public String getContacto() {
         return contacto;
     }
@@ -97,13 +129,17 @@ public class EmpresaBean implements GenericBean {
         this.obj_usuario = obj_usuario;
     }
 
+    
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
         strJson += "nombre:" + nombre + ",";
         strJson += "cif:" + cif + ",";
+        strJson += "alta:" + alta + ",";
+        strJson += "cambio:" + cambio + ",";
         strJson += "contacto:" + contacto + ",";
         strJson += "telefono:" + telefono + ",";
+        
 
         if (expand) {
             strJson += "obj_usuario:" + obj_usuario.toJson(false) + ",";
@@ -122,6 +158,8 @@ public class EmpresaBean implements GenericBean {
         strColumns += "id,";      
         strColumns += "nombre,";
         strColumns += "cif,";
+        strColumns += "alta,";
+        strColumns += "cambio,";
         strColumns += "contacto,";
         strColumns += "telefono,";
         strColumns += "id_usuario";
@@ -135,6 +173,8 @@ public class EmpresaBean implements GenericBean {
         strColumns += id + ","; 
         strColumns += EncodingUtilHelper.quotate(nombre) + ",";
         strColumns += EncodingUtilHelper.quotate(cif) + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(alta) + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(cambio) + ",";
         strColumns += EncodingUtilHelper.quotate(contacto) + ",";
         strColumns += telefono + ",";
         strColumns += id_usuario;
@@ -146,10 +186,13 @@ public class EmpresaBean implements GenericBean {
 
     @Override
     public String toPairs() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String strPairs = "";
         strPairs += "id=" + id + ",";     
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
         strPairs += "cif=" + EncodingUtilHelper.quotate(cif) + ",";
+        strPairs += "alta=" + EncodingUtilHelper.quotate(format.format(alta)) + ",";
+        strPairs += "cambio=" + EncodingUtilHelper.quotate(format.format(cambio)) + ",";
         strPairs += "contacto=" + EncodingUtilHelper.quotate(contacto) + ",";
         strPairs += "telefono=" + telefono + ",";
         strPairs += "id_usuario=" + id_usuario;
@@ -162,6 +205,8 @@ public class EmpresaBean implements GenericBean {
         this.setId(oResultSet.getInt("id"));
         this.setNombre(oResultSet.getString("nombre"));
         this.setCif(oResultSet.getString("cif"));
+       this.setAlta(oResultSet.getDate("alta"));
+       this.setCambio(oResultSet.getDate("cambio"));
         this.setContacto(oResultSet.getString("contacto"));
         this.setTelefono(oResultSet.getInt("telefono"));
        if (expand > 0) {

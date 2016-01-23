@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class UsuarioBean implements GenericBean{
 
@@ -62,13 +63,13 @@ public class UsuarioBean implements GenericBean{
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "login:" + login + ",";
-        strJson += "password:" + password + ",";
-        strJson += "descripcion:" + descripcion + ",";
+        strJson += "login:" + EncodingUtilHelper.quotate(login) + ",";
+        strJson += "password:" + EncodingUtilHelper.quotate(password) + ",";
+        strJson += "descripcion:" + EncodingUtilHelper.quotate(descripcion) + ",";
         strJson += "}";
         return strJson;
     }
-
+    
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
@@ -82,9 +83,9 @@ public class UsuarioBean implements GenericBean{
     @Override
     public String getValues() {
         String strColumns = "";
-        strColumns += id + ",";
-        strColumns += login + ",";
-        strColumns += password + ",";
+        strColumns += EncodingUtilHelper.quotate(login)+ ",";
+        strColumns += EncodingUtilHelper.quotate(password) + ",";
+        strColumns += EncodingUtilHelper.quotate(descripcion) + ",";
         strColumns += descripcion;
 
         return strColumns;
@@ -94,9 +95,9 @@ public class UsuarioBean implements GenericBean{
     public String toPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "login=" + login + ",";
-        strPairs += "password=" + password + ",";
-        strPairs += "descripcion=" + descripcion;
+        strPairs += "login=" + EncodingUtilHelper.quotate(login) + ",";
+        strPairs += "password=" + EncodingUtilHelper.quotate(password) + ",";
+        strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion);
 
         return strPairs;
     }

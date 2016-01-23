@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-01-2016 a las 05:03:46
+-- Tiempo de generación: 21-01-2016 a las 09:25:03
 -- Versión del servidor: 5.6.26
--- Versión de PHP: 5.5.29
+-- Versión de PHP: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -57,6 +57,15 @@ CREATE TABLE IF NOT EXISTS `centro` (
   `telefono` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `centro`
+--
+
+INSERT INTO `centro` (`id`, `id_empresa`, `nombre`, `direccion`, `cp`, `id_municipio`, `id_sector`, `telefono`) VALUES
+(1, 1, 'Container', 'Calle Ángel sopeña', 46036, 1, 1, 987544544),
+(2, 1, 'Manises', 'Manises 33', 46111, 2, 1, 777888444),
+(3, 1, 'Quart', 'Quart 33', 46111, 1, 1, 111444888);
+
 -- --------------------------------------------------------
 
 --
@@ -82,14 +91,15 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `contacto` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `telefono` int(9) NOT NULL,
   `id_usuario` int(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `empresa`
 --
 
 INSERT INTO `empresa` (`id`, `nombre`, `cif`, `contacto`, `telefono`, `id_usuario`) VALUES
-(1, 'Mototecnix', '58694673', 'Calle isla cabrera', 684505476, 1);
+(1, 'Mototecnia', '58694673', 'Calle isla cabrera', 684505476, 1),
+(2, 'Colacocaf', '464647777', 'Paquillo', 444888444, 1);
 
 -- --------------------------------------------------------
 
@@ -118,6 +128,14 @@ CREATE TABLE IF NOT EXISTS `municipio` (
   `id_comarca` int(2) NOT NULL,
   `comarca` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `municipio`
+--
+
+INSERT INTO `municipio` (`id`, `nombre`, `id_provincia`, `provincia`, `id_comarca`, `comarca`) VALUES
+(1, 'Valencia', 1, 'Valencia', 1, '1'),
+(2, 'Manises', 1, 'Valencia', 1, 'Valencia');
 
 -- --------------------------------------------------------
 
@@ -154,6 +172,13 @@ CREATE TABLE IF NOT EXISTS `sector` (
   `id` int(2) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sector`
+--
+
+INSERT INTO `sector` (`id`, `nombre`) VALUES
+(1, 'Motor');
 
 -- --------------------------------------------------------
 
@@ -243,7 +268,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
