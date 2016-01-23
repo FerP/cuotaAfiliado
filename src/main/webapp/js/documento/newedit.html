@@ -167,12 +167,12 @@ THE SOFTWARE.
                        ng-pattern="/^\d+$/"
                        numbersOnly
                        validatemin="1" 
-                       validatemax="10"
+                       validatemax="40"
                        required>
                 <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.required">El campo contenido es obligatorio</span>
-                <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.pattern">El campo contenido debe ser un número entero</span>
-                <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.lowerThan">El campo contenido debe ser menor que 40</span>
-
+                <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.pattern">El campo contenido debe ser un número entero</span>                
+                <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.validatemin">El campo contenido debe ser un número entero mayor que 0</span>
+                <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.validatemax">El campo contenido debe ser un número entero menor que 41</span>
 
             </div>
         </div>
