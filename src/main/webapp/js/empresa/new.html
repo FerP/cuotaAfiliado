@@ -54,7 +54,19 @@ THE SOFTWARE.
         </div>
 
 
-       
+       <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="contenido">Conctacto:</label>
+            <div class="control col-sm-9">
+                <input ng-model="obj.contacto" type="text" id="contenido" class="form-control" name="contenido" size="15" placeholder="contenido">
+            </div>
+        </div>
+        
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="contenido">Teléfono:</label>
+            <div class="control col-sm-9">
+                <input ng-model="obj.telefono" type="text" id="contenido" class="form-control" name="contenido" size="15" placeholder="contenido">
+            </div>
+        </div>
 
 
         
@@ -74,9 +86,9 @@ THE SOFTWARE.
                     </span>
                     <input ng-model="obj.obj_usuario.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_usuario" name="obj_usuario" type="text" size="5" maxlength="5">
                     <span class="input-group-addon">
-                        <a href="#/usuario/view/{{obj.obj_usuario.id}}">
-                            <span>{{obj.obj_usuario.login}} ({{obj.obj_usuario.ciudad}})</span>     
-                        </a>       
+                       <!-- <a href="#/usuario/view/{{obj.obj_usuario.id}}">
+                            <span>{{obj.obj_usuario.login}} ({{obj.obj_usuario.ciudad}})</span>    
+                        </a>     -->  
                     </span>
                 </div>
             </div>            

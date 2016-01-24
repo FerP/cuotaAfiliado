@@ -40,6 +40,10 @@ moduloCentro.controller('CentroPListController', ['$scope', '$routeParams', 'ser
         $scope.visibles.direccion= true;
         $scope.visibles.cp = true;
         $scope.visibles.telefono = true;
+        $scope.visibles.id_municipio= true;
+        $scope.visibles.id_sector= true;
+        $scope.visibles.id_empresa= true;
+        
 
         
 
@@ -49,7 +53,7 @@ moduloCentro.controller('CentroPListController', ['$scope', '$routeParams', 'ser
         $scope.ob = "centro";
         $scope.op = "plist";
         $scope.title = "Listado de centros";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-circle";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

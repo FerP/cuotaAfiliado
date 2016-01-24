@@ -30,7 +30,7 @@ public interface TableServiceInterface {
 
     public String get() throws Exception;
 
-   
+   public String getall() throws Exception;
 
     public String remove() throws Exception;
 

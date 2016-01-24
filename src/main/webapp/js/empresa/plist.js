@@ -47,7 +47,7 @@ moduloEmpresa.controller('EmpresaPListController', ['$scope', '$routeParams', 's
         $scope.ob = "empresa";
         $scope.op = "plist";
         $scope.title = "Listado de empresas";
-        $scope.icon = "fa-user";
+        $scope.icon = "fa-building-o";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {
