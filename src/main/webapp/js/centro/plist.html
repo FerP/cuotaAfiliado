@@ -166,7 +166,7 @@
 
 
 
-                    <th>Acciones</th>
+                    <th>Mantenimiento</th>
                 </tr>
             </thead>
             <tbody>
@@ -178,14 +178,14 @@
                     <td ng-show="visibles.telefono" class="text-right">{{obj.telefono}}</td>
                     <td ng-show="visibles.id_municipio"  class="text-right">{{obj.obj_municipio.nombre}}</td>
                     <td ng-show="visibles.id_sector"  class="text-right">{{obj.obj_sector.nombre}}</td>
-                    <td ng-show="visibles.id_empresa"  class="text-right">{{obj.obj_empresa.nombre}}</td>
+                    <td ng-show="visibles.id_empresa"  class="text-right"><a href="#/empresa/view/{{obj.obj_empresa.id}}">{{obj.obj_empresa.nombre}}</td>
                     
 
 
                     <td>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Acciones<span class="caret"></span>
+                                Selección<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="btn btn-default action02" href="#/centro/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
