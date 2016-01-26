@@ -37,7 +37,7 @@ var openAusias = angular.module('myApp', [
     'systemControllers',
     'centroControllers',
     'empresaControllers',
-    'usuarioControllers',    
+    'usuarioControllers',
     'tipodocumentoControllers',
     'ui.bootstrap',
     'ngSanitize'
@@ -55,20 +55,20 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/empresa/view/:id', {templateUrl: 'js/empresa/view.html', controller: 'EmpresaViewController'});
         $routeProvider.when('/empresa/new/', {templateUrl: 'js/empresa/new.html', controller: 'EmpresaNewController'});
         $routeProvider.when('/empresa/edit/:id', {templateUrl: 'js/empresa/edit.html', controller: 'EmpresaEditController'});
-        $routeProvider.when('/empresa/remove/:id', {templateUrl: 'js/empresa/remove.html',   controller: 'EmpresaRemoveController'});
+        $routeProvider.when('/empresa/remove/:id', {templateUrl: 'js/empresa/remove.html', controller: 'EmpresaRemoveController'});
         $routeProvider.when('/empresa/plist/:page?/:rpp?', {templateUrl: 'js/empresa/plist.html', controller: 'EmpresaPListController'});
-     
-                $routeProvider.when('/centro/view/:id', {templateUrl: 'js/centro/view.html', controller: 'CentroViewController'});
+
+        $routeProvider.when('/centro/view/:id', {templateUrl: 'js/centro/view.html', controller: 'CentroViewController'});
         $routeProvider.when('/centro/new', {templateUrl: 'js/centro/new.html', controller: 'CentroNewController'});
         $routeProvider.when('/centro/edit/:id', {templateUrl: 'js/centro/edit.html', controller: 'CentroEditController'});
-        $routeProvider.when('/centro/remove/:id', {templateUrl: 'js/centro/remove.html',   controller: 'CentroRemoveController'});
+        $routeProvider.when('/centro/remove/:id', {templateUrl: 'js/centro/remove.html', controller: 'CentroRemoveController'});
         $routeProvider.when('/centro/plist/:page?/:rpp?', {templateUrl: 'js/centro/plist.html', controller: 'CentroPListController'});
         //------------        
-     
-        $routeProvider.when('/usuario/selection/:page/:rpp', {templateUrl: 'js/usuario/selection.html', controller: 'UsuarioSelectionController'});   
+
+        $routeProvider.when('/usuario/selection/:page/:rpp', {templateUrl: 'js/usuario/selection.html', controller: 'UsuarioSelectionController'});
         $routeProvider.when('/usuario/new', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController'});
-        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html',   controller: 'UsuarioRemoveController'});
+        $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController'});
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
@@ -81,5 +81,5 @@ var moduloEmpresa = angular.module('empresaControllers', []);
 var moduloCentro = angular.module('centroControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
 var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
-        
+
 

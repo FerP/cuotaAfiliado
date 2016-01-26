@@ -18,9 +18,9 @@ import net.daw.helper.statics.SqlBuilder;
 public class CentroDao implements ViewDaoInterface<CentroBean>, TableDaoInterface<CentroBean> {
 
     private String strTable = "centro";
-private String strSQL = "SELECT * FROM centro, municipio, sector WHERE sector.id=centro.id_sector and municipio.id=centro.id_municipio and 1=1";
+//private String strSQL = "SELECT * FROM centro, municipio, sector WHERE sector.id=centro.id_sector and municipio.id=centro.id_municipio and 1=1";
 
-//private String strSQL = "SELECT c.id, c.nombre, e.nombre, c.id_empresa, m.nombre, c.id_municipio, c.id_sector, s.nombre FROM centro c, empresa e, municipio m, sector s WHERE m.id=c.id_municipio AND s.id=c.id_sector AND e.id=c.id_empresa AND 1=1 ";
+private String strSQL = "SELECT c.id, c.nombre, c.direccion, c.cp, c.telefono, e.nombre, c.id_empresa, m.nombre, c.id_municipio, c.id_sector, s.nombre FROM centro c, empresa e, municipio m, sector s WHERE m.id=c.id_municipio AND s.id=c.id_sector AND e.id=c.id_empresa AND 1=1 ";
 //   private String strSQL = "SELECT * FROM centro WHERE 1=1";
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;

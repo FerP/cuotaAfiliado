@@ -149,17 +149,17 @@
                     </th>
 
                     <th ng-show="visibles.id_municipio" class="text-right">
-                        Id_Municipio
+                        Municipio
                         <a ng-show="visibles.id_municipio" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id_municipio" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
                     <th ng-show="visibles.id_sector" class="text-right">
-                        Id_Sector
+                        Sector
                         <a ng-show="visibles.id_sector" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id_sector" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
                     <th ng-show="visibles.id_empresa" class="text-right">
-                        Id_Empresa
+                        Empresa
                         <a ng-show="visibles.id_empresa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id_empresa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
@@ -176,9 +176,9 @@
                     <td ng-show="visibles.direccion"  class="text-right">{{obj.direccion}}</td>
                     <td ng-show="visibles.cp"  class="text-right">{{obj.cp}}</td>
                     <td ng-show="visibles.telefono" class="text-right">{{obj.telefono}}</td>
-                    <td ng-show="visibles.id_municipio"  class="text-right">{{obj.id_municipio}}</td>
-                    <td ng-show="visibles.id_sector"  class="text-right">{{obj.id_sector}}</td>
-                    <td ng-show="visibles.id_empresa"  class="text-right">{{obj.id_empresa}}</td>
+                    <td ng-show="visibles.id_municipio"  class="text-right">{{obj.obj_municipio.nombre}}</td>
+                    <td ng-show="visibles.id_sector"  class="text-right">{{obj.obj_sector.nombre}}</td>
+                    <td ng-show="visibles.id_empresa"  class="text-right">{{obj.obj_empresa.nombre}}</td>
                     
 
 
