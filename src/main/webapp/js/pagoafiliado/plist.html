@@ -10,18 +10,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Soft<!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
-
-openAUSIAS: The stunning micro-library that helps you to develop easily
-            AJAX web applications by using Java and jQuery
-openAUSIAS is distributed under the MIT License (MIT)
-Sources at https://github.com/rafaelaznar/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
@@ -110,18 +98,17 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <p></p>
-                                <p>Campos visibles:</p>
+                                
+                               <!-- <p>Campos visibles:</p>
                                 <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
-
                                 <input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre">Nombre
-                                <input type="checkbox" ng-model="visibles.cif" ng-checked="visibles.alta">cif
-                                <input type="checkbox" ng-model="visibles.contacto" ng-checked="visibles.contacto">Contacto
-
-                                <!-- <input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario">Usuario-->
-
-                                <input type="checkbox" ng-model="visibles.telefono" ng-checked="visibles.telefono">Telefono
-
-
+                                <input type="checkbox" ng-model="visibles.apellido1" ng-checked="visibles.apellido1">Apellido1
+                                <input type="checkbox" ng-model="visibles.apellido2" ng-checked="visibles.apellido2">Apellido2
+                                <input type="checkbox" ng-model="visibles.fnac" ng-checked="visibles.fnac">Fecha nacimiento
+                                <input type="checkbox" ng-model="visibles.falta" ng-checked="visibles.falta">Fecha alta
+                                <input type="checkbox" ng-model="visibles.movil" ng-checked="visibles.movil">Móvil
+                                <input type="checkbox" ng-model="visibles.email" ng-checked="visibles.email">Email
+                                   --> 
 
                                 <p></p>
                             </div>
@@ -131,14 +118,19 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-md-12">
                                 <p></p>
-                                
+                                <!--
                                 <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
                                     <option style="display:none">selecciona un campo</option>
                                     <option value="id">Identificador</option>
                                     <option value="nombre">Nombre</option>
-                                    <option value="cif">Cif</option>
-                                    <option value="contacto">Contacto</option>
-                                    <option value="telefono">telefono</option>                                    
+                                    <option value="falta">Fecha alta</option>
+                                    <option value="fnac">Fecha nacimiento</option>
+                                    <option value="movil">móvil</option>
+                                    <option value="email">email</option>
+                                    
+                                    <option value="id_empresa">empresa</option> 
+                                    <option value="id_centro">centro</option>
+                                    <option value="id_cuota">cuota</option>
 
 
 
@@ -158,7 +150,7 @@ THE SOFTWARE.
                                 </select>
                                 <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
                                 <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
-
+                                -->
                                 <p></p>
                             </div>
                         </div>
@@ -167,7 +159,7 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-md-12">
                                 <p></p>
-                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
+                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="afiliadoForm">
                                     <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="clientFilterText">
                                     <input type="submit" class="btn" id="btnFiltrarClient" name="btnFiltrarClient" value="Filtrar" ng-click="doClientFilter()">
                                 </form>
@@ -197,37 +189,38 @@ THE SOFTWARE.
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.nombre">
-                        Nombre
-                        <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    
+                    <th ng-show="visibles.id_afiliado" class="text-right">
+                        Afiliado
+                        <a ng-show="visibles.id_afiliado" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.id_afiliado" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.cif">
-                        Cif
-                        <a ng-show="visibles.cif" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.cif" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    
+                     <th ng-show="visibles.id_cuota" class="text-right">
+                        Cuota
+                        <a ng-show="visibles.id_cuota" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.id_cuota" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.contacto">
-                        Contacto
-                        <a ng-show="visibles.contacto" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.contacto" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    
+                     <th ng-show="visibles.id_recibo" class="text-right">
+                       Recibo
+                        <a ng-show="visibles.id_recibo" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.id_recibo" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.telefono">
-                        Telefono
-                        <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
+                    
 
-                    <th>Acciones</th>
+                    <th>Mantenimiento</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="obj in page">
-                    <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>
-                    <td ng-show="visibles.nombre">{{obj.nombre}}</td>
-                    <td ng-show="visibles.cif">{{obj.cif}}</td>
-                    <td ng-show="visibles.contacto">{{obj.contacto}}</td>
-                    <td ng-show="visibles.telefono" class="text-right">{{obj.telefono}}</td>
+                    <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>           
+                                    
+                    <td ng-show="visibles.id_afiliado">{{obj.obj_afiliado.nombre}}</td>
+                    <td ng-show="visibles.id_cuota">{{obj.obj_cuota.tipocuota}}</td>
+                    <td ng-show="visibles.id_recibo">{{obj.obj_recibo.descripcion}}</td>
+                    
+                    
 
 
                     <td>
@@ -236,10 +229,9 @@ THE SOFTWARE.
                                 Acciones<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="btn btn-default action02" href="#/empresa/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
-
-                                <li><a class="btn btn-default action03" href="#/empresa/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                <li><a class="btn btn-default action04" href="#/empresa/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
+                                <li><a class="btn btn-default action02" href="#/pagoafiliado/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
+                                <li><a class="btn btn-default action03" href="#/pagoafiliado/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
+                                <li><a class="btn btn-default action04" href="#/pagoafiliado/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
                             </ul>
                         </div>
                     </td>

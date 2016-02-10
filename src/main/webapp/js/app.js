@@ -45,6 +45,7 @@ var openAusias = angular.module('myApp', [
     'afiliadoControllers',
     'reciboControllers',
     'pagoControllers',
+    'pagoafiliadoControllers',
 //    'usuarioControllers',
 //    'tipodocumentoControllers',
     'ui.bootstrap',
@@ -158,6 +159,9 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/recibo/plist/:page?/:rpp?', {templateUrl: 'js/recibo/plist.html', controller: 'ReciboPListController'});        
         
         
+        
+        
+        $routeProvider.when('/pagoafiliado/plist/:page?/:rpp?', {templateUrl: 'js/pagoafiliado/plist.html', controller: 'PagoafiliadoPListController'});  
 
 //        $routeProvider.when('/usuario/selection/:page/:rpp', {templateUrl: 'js/usuario/selection.html', controller: 'UsuarioSelectionController'});
 //        $routeProvider.when('/usuario/new', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
@@ -199,6 +203,8 @@ var moduloCuota = angular.module('cuotaControllers', []);
 var moduloAfiliado = angular.module('afiliadoControllers', []);
 var moduloRecibo = angular.module('reciboControllers', []);
 var moduloPago = angular.module('pagoControllers', []);
+var moduloPagoAfiliado = angular.module('pagoafiliadoControllers', []);
+
 
 
 //var moduloUsuario = angular.module('usuarioControllers', []);

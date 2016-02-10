@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-02-2016 a las 15:29:16
+-- Tiempo de generación: 10-02-2016 a las 14:34:31
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.30
 
@@ -117,10 +117,10 @@ CREATE TABLE IF NOT EXISTS `cuota` (
 --
 
 INSERT INTO `cuota` (`id`, `tipocuota`, `importe`) VALUES
-(1, 'Cuota básica', 9.99),
+(1, 'Cuota ordinaria', 11.70),
 (2, 'Cuota reducida', 7.75),
 (3, 'Cuotas especiales jubilados', 5.50),
-(4, 'Cuotas especiales UPA y UPTA', 3.90);
+(4, 'Cuota desempleado', 3.30);
 
 -- --------------------------------------------------------
 
@@ -204,8 +204,21 @@ CREATE TABLE IF NOT EXISTS `pago` (
 INSERT INTO `pago` (`id`, `fpago`, `id_afiliado`, `id_cuota`, `id_recibo`) VALUES
 (1, '2016-02-16', 1, 1, 1),
 (2, '2016-02-08', 2, 2, 2),
-(3, '2016-02-12', 1, 5, 4),
-(4, '2016-02-17', 2, 1, 3);
+(3, '2016-02-12', 1, 3, 1),
+(4, '2016-02-17', 2, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pagoafiliado`
+--
+
+CREATE TABLE IF NOT EXISTS `pagoafiliado` (
+  `id` int(2) NOT NULL,
+  `id_afiliado` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_cuota` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_recibo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -244,8 +257,8 @@ CREATE TABLE IF NOT EXISTS `recibo` (
 --
 
 INSERT INTO `recibo` (`id`, `descripcion`, `emision`, `periodo`) VALUES
-(1, 'a fecha mes de marzo', 100034, 'anual'),
-(2, 'con fecha julio', 100036, 'trimestral');
+(1, 'DN Enero 2016', 100034, 'M012016'),
+(2, 'DN Febrero 2016', 100036, 'M022016');
 
 -- --------------------------------------------------------
 
@@ -341,7 +354,14 @@ ALTER TABLE `municipio`
 -- Indices de la tabla `pago`
 --
 ALTER TABLE `pago`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_pago` (`id`);
+
+--
+-- Indices de la tabla `pagoafiliado`
+--
+ALTER TABLE `pagoafiliado`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `provincia`
@@ -411,6 +431,11 @@ ALTER TABLE `municipio`
 --
 ALTER TABLE `pago`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `pagoafiliado`
+--
+ALTER TABLE `pagoafiliado`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `provincia`
 --

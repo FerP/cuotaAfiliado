@@ -31,23 +31,21 @@
 
 'use strict';
 
-moduloEmpresa.controller('EmpresaPListController', ['$scope', '$routeParams', 'serverService', '$location',
+moduloPagoAfiliado.controller('PagoAfiliadoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         
         $scope.visibles={};
         $scope.visibles.id = true;
-        $scope.visibles.nombre = true;
-        $scope.visibles.cif= true;
-        $scope.visibles.contacto = true;
-        $scope.visibles.telefono = true;
-        $scope.visibles.id_usuario= true;
+        $scope.visibles.id_afiliado= true;
+        $scope.visibles.id_cuota = true;
+        $scope.visibles.id_recibo= true;
        
 
 
-        $scope.ob = "empresa";
+        $scope.ob = "pagoAfiliado";
         $scope.op = "plist";
-        $scope.title = "Listado de empresas";
-        $scope.icon = "fa-building-o";
+        $scope.title = "Listado de Pagos afiliados";
+        $scope.icon = "fa-credit-card";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {
@@ -148,12 +146,6 @@ moduloEmpresa.controller('EmpresaPListController', ['$scope', '$routeParams', 's
             }
             return false;
         };
-
-
-
-
-
-
 
 
     }]);
