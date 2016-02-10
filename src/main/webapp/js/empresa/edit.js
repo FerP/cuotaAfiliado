@@ -35,7 +35,7 @@ moduloEmpresa.controller('EmpresaEditController', ['$scope', '$routeParams', '$l
         $scope.op = 'edit';
         $scope.result = null;
         $scope.title = "Edición de empresa";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-building-o";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

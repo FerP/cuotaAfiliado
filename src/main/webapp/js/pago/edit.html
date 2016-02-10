@@ -1,0 +1,109 @@
+<div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+<div class="panel-body">
+    <form name="outerForm" class="form-horizontal" ng-show="result == null">
+
+        <div id="id-group" class="form-group">
+            <label class="col-sm-2 control-label" for="id">Identificador:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.id" type="text" id="id" class="form-control" name="id" size="15" placeholder="id" disabled="disabled">
+            </div>
+        </div>
+
+        
+          <div id="fpago-group" class="form-group">
+            <label class="col-sm-2 control-label" for="fpago">Fecha de pago:</label>
+            <div class="control col-sm-3">
+                <div class="input-group date" id="fpago_group">
+                    <input type="text" class="form-control" starting-day="1" uib-datepicker-popup="dd/MM/yyyy" ng-model="obj.fpago" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions1" date-disabled="disabled(date, mode)" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" placeholder="Fecha de pago" />
+                    <span class="input-group-addon" ng-click="open1()">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_afiliado">afiliado</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_afiliado_group">
+                    <span class="input-group-addon" id="obj_afiliado_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('afiliado')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_afiliado.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_afiliado" name="obj_afiliado" type="text" size="5" maxlength="5">
+                    <span class="input-group-addon">
+                        <!--lo que hace que se muestre en pantalla selector el id y el nombre-->
+                        <a href="#/afiliado/view/{{obj.obj_afiliado.id}}">
+                            <span>{{obj.obj_afiliado.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+            
+        
+         <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_cuota">cuota:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_cuota_group">
+                    <span class="input-group-addon" id="obj_cuota_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('cuota')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_cuota.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_cuota" name="obj_cuota" type="text" size="5" maxlength="5">
+                                        <span class="input-group-addon">
+                        <a href="#/cuota/view/{{obj.obj_cuota.id}}">
+                            <span>{{obj.obj_cuota.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+        
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_recibo">recibo:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_recibo_group">
+                    <span class="input-group-addon" id="obj_recibo_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('recibo')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_recibo.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_recibo" name="obj_recibo" type="text" size="5" maxlength="5">
+                                        <span class="input-group-addon">
+                        <a href="#/recibo/view/{{obj.obj_recibo.id}}">
+                            <span>{{obj.obj_recibo.descripcion}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+        
+        
+        
+        
+
+
+
+        <div class="control-group text-right">
+            <div class="controls">
+                <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de pago</a>
+                <a class="btn btn-default" ng-click="close()">Cerrar</a>
+            </div>
+        </div>
+    </form>
+    <div ng-show="result != null">    
+        <div class="alert alert-success" ng-show="result.status == 200">
+            <h2>Se ha modificado el registro</h2>
+            <a ng-href="#/pago/view/{{id}}">Ver el registro modificado</a>
+        </div>
+        <div class="alert alert-danger" ng-show="result.status != 200">
+            <h2>Error al modificar la pago: no se ha modificado la pago</h2>
+            <h3>Código: {{result.status}}</h3>
+            <h3>Mensaje: {{result.message}}</h3>             
+        </div>
+    </div>
+</div>
+<div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>

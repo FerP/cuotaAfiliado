@@ -5,12 +5,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import net.daw.bean.implementation.AfiliadoBean;
-import net.daw.bean.implementation.CentroBean;
 import net.daw.dao.publicinterface.TableDaoInterface;
 import net.daw.dao.publicinterface.ViewDaoInterface;
 import net.daw.data.implementation.MysqlDataSpImpl;
-import net.daw.helper.statics.AppConfigurationHelper;
+
 import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
@@ -60,37 +60,37 @@ public class AfiliadoDao implements ViewDaoInterface<AfiliadoBean>, TableDaoInte
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<AfiliadoBean> arrCentro = new ArrayList<>();
+        ArrayList<AfiliadoBean> arrAfiliado = new ArrayList<>();
         try {
             ResultSet oResultSet = oMysql.getAllSql(strSQL);
             if (oResultSet != null) {
                 while (oResultSet.next()) {
                     AfiliadoBean oAfiliadoBean = new AfiliadoBean();
-                    arrCentro.add(oAfiliadoBean.fill(oResultSet, oConnection, expand));
+                    arrAfiliado.add(oAfiliadoBean.fill(oResultSet, oConnection, expand));
                 }
             }
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
-        return arrCentro;
+        return arrAfiliado;
     }
 
     @Override
     public ArrayList<AfiliadoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<AfiliadoBean> arrCentro = new ArrayList<>();
+        ArrayList<AfiliadoBean> arrAfiliado = new ArrayList<>();
         try {
             ResultSet oResultSet = oMysql.getAllSql(strSQL);
             if (oResultSet != null) {
                 while (oResultSet.next()) {
-                    AfiliadoBean oCentroBean = new AfiliadoBean();
-                    arrCentro.add(oCentroBean.fill(oResultSet, oConnection, expand));
+                    AfiliadoBean oAfiliadoBean = new AfiliadoBean();
+                    arrAfiliado.add(oAfiliadoBean.fill(oResultSet, oConnection, expand));
                 }
             }
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
-        return arrCentro;
+        return arrAfiliado;
     }
 
     @Override

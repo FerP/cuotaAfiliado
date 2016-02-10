@@ -39,27 +39,30 @@ THE SOFTWARE.
                     </thead>
                     <tbody>
                         <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                        <tr><td>titulo</td><td>{{bean.titulo}}</td></tr> 
-                        <tr><td>contenido</td><td>{{bean.contenido| clipString}}</td></tr> 
-                        <tr><td>alta</td><td>{{bean.alta}}</td></tr> 
-                        <tr><td>cambio</td><td>{{bean.cambio}}</td></tr> 
-                        <tr><td>hits</td><td>{{bean.hits}}</td></tr> 
-                        <tr><td>etiquetas</td><td>{{bean.etiquetas}}</td></tr> 
+                        <tr><td>nombre</td><td>{{bean.nombre}}</td></tr> 
+                        <tr><td>direccion</td><td>{{bean.direccion}}</td></tr>
+                        <tr><td>cp</td><td>{{bean.cp}}</td></tr>
+                        <tr><td>teléfono</td><td>{{bean.telefono}}</td></tr> 
+                         
                         <tr>
-                            <td>usuario</td>
+                            <td>Empresa</td>
                             <td>
-                                <a href="#/usuario/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.login}}</a>
+                                <a href="#/empresa/view/{{bean.obj_empresa.id}}">{{bean.obj_empresa.nombre}}</a>
                             </td>
                         </tr> 
                         <tr>
-                            <td>tipo de documento</td>
+                            <td>Municipio</td>
                             <td>
-                                <a href="#/tipodocumento/view/{{bean.obj_tipodocumento.id}}">{{bean.obj_tipodocumento.descripcion}}</a>
+                                <a href="#/municipio/view/{{bean.obj_municipio.id}}">{{bean.obj_municipio.nombre}}</a>
                             </td>
                         </tr> 
-                        <tr><td>publicado</td><td>{{bean.publicado}}</td></tr> 
-                        <tr><td>portada</td><td>{{bean.portada}}</td></tr> 
-                        <tr><td>destacado</td><td>{{bean.destacado}}</td></tr> 
+                        <tr>
+                            <td>Sector</td>
+                            <td>
+                                <a href="#/sector/view/{{bean.obj_sector.id}}">{{bean.obj_sector.nombre}}</a>
+                            </td>
+                        </tr> 
+                      
                     </tbody>
                 </table>  
                 <div class="text-right" > 

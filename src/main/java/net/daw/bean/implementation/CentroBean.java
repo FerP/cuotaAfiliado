@@ -23,6 +23,11 @@ public class CentroBean implements GenericBean {
     private String cp = "";
     @Expose
     private Integer telefono = 0;
+    
+     @Expose(serialize = false)
+    private Integer id_empresa = 0;
+    @Expose(deserialize = false)
+    private EmpresaBean obj_empresa = null;
 
     @Expose(serialize = false)
     private Integer id_municipio = 0;
@@ -34,10 +39,7 @@ public class CentroBean implements GenericBean {
     @Expose(deserialize = false)
     private SectorBean obj_sector = null;
 
-    @Expose(serialize = false)
-    private Integer id_empresa = 0;
-    @Expose(deserialize = false)
-    private EmpresaBean obj_empresa = null;
+   
 
     public CentroBean() {
         this.id = 0;
@@ -142,21 +144,18 @@ public class CentroBean implements GenericBean {
         strJson += "direccion:" + EncodingUtilHelper.quotate(direccion) + ",";
         strJson += "cp:" + EncodingUtilHelper.quotate(cp) + ",";
         strJson += "telefono:" + telefono + ",";
-        strJson += "id_municipio:" + id_municipio + ",";
-        strJson += "id_sector:" + id_sector + ",";
         strJson += "id_empresa:" + id_empresa + ",";
+        strJson += "id_municipio:" + id_municipio + ",";
+        strJson += "id_sector:" + id_sector;
+       
         strJson += "}";
-//            strJson += "obj_municipio:" + obj_municipio.toJson(false) + ",";
-//            strJson += "obj_sector:" + obj_sector.toJson(false) + ",";
-//            strJson += "obj_empresa:" + obj_empresa.toJson(false) + ",";
-//        
-//            strJson += "id_municipio:" + id_municipio + ",";
-//            strJson += "id_sector:" + id_sector + ",";
-//            strJson += "id_empresa:" + id_empresa + ",";
-//        
 
         return strJson;
+        
+        
+         
     }
+    
 
     public String getColumns() {
         String strColumns = "";
@@ -165,9 +164,10 @@ public class CentroBean implements GenericBean {
         strColumns += "direccion,";
         strColumns += "cp,";
         strColumns += "telefono,";
+        strColumns += "id_empresa,";
         strColumns += "id_municipio,";
-        strColumns += "id_sector,";
-        strColumns += "id_empresa";
+        strColumns += "id_sector";
+        
 
         return strColumns;
     }
@@ -180,9 +180,10 @@ public class CentroBean implements GenericBean {
         strColumns += EncodingUtilHelper.quotate(direccion) + ",";
         strColumns += EncodingUtilHelper.quotate(cp) + ",";
         strColumns += telefono + ",";
+        strColumns += id_empresa + ",";
         strColumns += id_municipio + ",";
-        strColumns += id_sector + ",";
-        strColumns += id_empresa;
+        strColumns += id_sector;
+        
 
         return strColumns;
     }
@@ -195,9 +196,10 @@ public class CentroBean implements GenericBean {
         strPairs += "direccion=" + EncodingUtilHelper.quotate(direccion) + ",";
         strPairs += "cp=" + EncodingUtilHelper.quotate(cp) + ",";
         strPairs += "telefono=" + telefono + ",";
+        strPairs += "id_empresa=" + id_empresa + ",";
         strPairs += "id_municipio=" + id_municipio + ",";
         strPairs += "id_sector=" + id_sector;
-         strPairs += "id_empresa=" + id_empresa + ",";
+        
         return strPairs;
     }
 

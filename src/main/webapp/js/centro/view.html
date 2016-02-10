@@ -37,47 +37,44 @@ THE SOFTWARE.
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                    <tr><td>titulo</td><td>{{bean.nombre}}</td></tr> 
-                    <tr><td>contenido</td><td>{{bean.direccion}}</td></tr> 
-                    <tr><td>alta</td><td>{{bean.cp}}</td></tr> 
-                    <tr><td>cambio</td><td>{{bean.telefono}}</td></tr>
+                    <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr> 
+                    <tr><td>Dirección</td><td>{{bean.direccion}}</td></tr> 
+                    <tr><td>Cp</td><td>{{bean.cp}}</td></tr> 
+                    <tr><td>Teléfono</td><td>{{bean.telefono}}</td></tr>
                     <tr>
+                        
+                        
+                        
                         <td>empresa</td>
                         <td>
-                            <a href="#/empresa/view/{{bean.obj_empresa.id}}">Ver empresa</a>
+                            
+                            <a href="#/empresa/view/{{bean.obj_empresa.id}}">{{bean.obj_empresa.nombre}}</a>
                         </td>
                     </tr>     
                       <tr>
-                        <td>sector</td>
+                        <td>municipio</td>
                         <td>
-                            <a href="#/sector/view/{{bean.obj_sector.id}}">Ver sector</a>
+                            <a href="#/municipio/view/{{bean.obj_municipio.id}}">{{bean.obj_municipio.nombre}}</a>
                         </td>
                     </tr>  
                        <tr>
-                        <td>municipio</td>
+                        <td>sector</td>
                         <td>
-                            <a href="#/municipio/view/{{bean.obj_municipio.id}}">Ver municipio</a>
+                            <a href="#/sector/view/{{bean.obj_sector.id}}">{{bean.obj_sector.nombre}}</a>
                         </td>
                     </tr>  
-                    <tr>
-                        <td>usuario</td>
-                        <td>
-                            <a href="#/usuario/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.login}}</a>
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td>tipo de documento</td>
-                        <td>
-                            <a href="#/tipodocumento/view/{{bean.obj_tipodocumento.id}}">{{bean.obj_tipodocumento.descripcion}}</a>
-                        </td>
-                    </tr> 
+                    
+                  
     
                 </tbody>
             </table>  
             <div class="text-right" > 
+               
                 <a class="btn btn-primary" href="#/centro/edit/{{bean.id}}">Editar</a>
-                <a class="btn btn-danger" href="#">Borrar</a>
+                <a class="btn btn-danger" href="#/centro/remove/{{bean.id}}">Borrar</a>
+                
                    <a class="btn btn-default" ng-click="plist()">Ir al listado de centros</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>

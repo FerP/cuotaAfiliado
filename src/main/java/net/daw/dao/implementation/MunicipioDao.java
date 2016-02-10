@@ -17,7 +17,7 @@ import net.daw.helper.statics.SqlBuilder;
 public class MunicipioDao implements ViewDaoInterface<MunicipioBean>, TableDaoInterface<MunicipioBean> {
 
     private String strTable = "municipio";
-    private String strSQL = "select * from municipio where 1=1 ";
+    private String strSQL = "select * from municipio WHERE 1=1";
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
 

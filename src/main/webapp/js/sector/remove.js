@@ -28,15 +28,15 @@
 
 'use strict';
 
-moduloEmpresa.controller('EmpresaRemoveController', ['$scope', '$routeParams', 'serverService',
+moduloSector.controller('SectorRemoveController', ['$scope', '$routeParams', 'serverService',
     function ($scope, $routeParams, serverService) {
         $scope.result = "";
         $scope.back = function () {
             window.history.back();
         };
-        $scope.ob = 'empresa';
+        $scope.ob = 'sector';
         $scope.id = $routeParams.id;
-        $scope.title = "Borrado de un empresa";
+        $scope.title = "Borrado de un sector";
         $scope.icon = "fa-file-text-o";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;

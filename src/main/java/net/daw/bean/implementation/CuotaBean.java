@@ -5,15 +5,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class CuotaBean implements GenericBean{
 
     @Expose
     private Integer id;
     @Expose
-    private String nombre = "";
+    private String tipocuota = "";
      @Expose
-    private Integer importe;
+    private double importe;
 
     public CuotaBean() {
         this.id = 0;
@@ -31,30 +32,29 @@ public class CuotaBean implements GenericBean{
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTipocuota() {
+        return tipocuota;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTipocuota(String tipocuota) {
+        this.tipocuota = tipocuota;
     }
 
-    public Integer getImporte() {
+    public double getImporte() {
         return importe;
     }
 
-    public void setImporte(Integer importe) {
+    public void setImporte(double importe) {
         this.importe = importe;
     }
 
    
-    
 
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "nombre:" + nombre + ",";  
-        strJson += "importe:" + importe + ","; 
+        strJson += "tipocuota:" + tipocuota + ",";  
+        strJson += "importe:" + importe; 
         strJson += "}";
         return strJson;
     }
@@ -62,7 +62,7 @@ public class CuotaBean implements GenericBean{
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
-        strColumns += "nombre";
+        strColumns += "tipocuota,";
         strColumns += "importe";
 
         return strColumns;
@@ -72,7 +72,7 @@ public class CuotaBean implements GenericBean{
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += nombre +",";
+        strColumns += EncodingUtilHelper.quotate(tipocuota) + ",";
         strColumns += importe;
 
         return strColumns;
@@ -82,7 +82,7 @@ public class CuotaBean implements GenericBean{
     public String toPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "nombre=" + nombre + ",";
+        strPairs += "tipocuota=" + EncodingUtilHelper.quotate(tipocuota) + ",";
         strPairs += "importe=" + importe;
 
         return strPairs;
@@ -91,8 +91,8 @@ public class CuotaBean implements GenericBean{
     @Override
     public CuotaBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
-        this.setNombre(oResultSet.getString("nombre"));
-        this.setImporte(oResultSet.getInt("importe"));
+        this.setTipocuota(oResultSet.getString("tipocuota"));
+        this.setImporte(oResultSet.getDouble("importe"));
         return this;
 
     }

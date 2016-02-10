@@ -1,30 +1,3 @@
-<!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
-
-openAUSIAS: The stunning micro-library that helps you to develop easily 
-            AJAX web applications by using Java and jQuery
-openAUSIAS is distributed under the MIT License (MIT)
-Sources at https://github.com/rafaelaznar/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
--->
 <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
     <form name="outerForm" class="form-horizontal" ng-show="result == null">
@@ -37,48 +10,69 @@ THE SOFTWARE.
         </div>
 
 
-        <div id="titulo-group" class="form-group">
-            <label class="col-sm-2 control-label" for="titulo">Título:</label>
+        <div id="nombre-group" class="form-group">
+            <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
             <div class="control col-sm-8">
                 <input ng-model="obj.nombre" required type="text" id="nombre" 
-                       class="form-control" name="titulo" size="15" placeholder="titulo"
-                       ng-class="{error:!outerForm.$pristine && outerForm.nombre.$error.required}">
+                       class="form-control" name="nombre" size="15" placeholder="nombre"
+                       ng-class="{error:!outerForm.$pristine && outerForm.titulo.$error.required}">
             </div>
             <span ng-show="!outerForm.$pristine && outerForm.nombre.$error.required">El campo nombre es obligatorio</span>
         </div>
 
 
-        <div id="contenido-group" class="form-group">
-            <label class="col-sm-2 control-label" for="cif">CIF:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.cif" type="text" id="cif" class="form-control" name="cif" size="15" placeholder="cif"
-                       ng-class="{error:!outerForm.$pristine && outerForm.cif.$error.required}">
-            </div>
-            <span ng-show="!outerForm.$pristine && outerForm.cif.$error.required">El campo cif es obligatorio</span>
-        </div>
+
         
-       <div id="contenido-group" class="form-group">
-            <label class="col-sm-2 control-label" for="contacto">Contacto:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.contacto" type="text" id="contacto" class="form-control" name="contacto" size="15" placeholder="contacto"
-                       ng-class="{error:!outerForm.$pristine && outerForm.contacto.$error.required}">
-            </div>
-            <span ng-show="!outerForm.$pristine && outerForm.contacto.$error.required">El campo contacto es obligatorio</span>
-        </div>
         
-       <div id="contenido-group" class="form-group">
-            <label class="col-sm-2 control-label" for="contacto">Teléfono:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.telefono" type="text" id="telefono" class="form-control" name="telefono" size="15" placeholder="telefono"
-                       ng-class="{error:!outerForm.$pristine && outerForm.telefono.$error.required}">
-            </div>
-            <span ng-show="!outerForm.$pristine && outerForm.telefono.$error.required">El campo teléfono es obligatorio</span>
+        
+        
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_provincia">provincia:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_provincia_group">
+                    <span class="input-group-addon" id="obj_provincia_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('provincia')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_provincia.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_provincia" name="obj_provincia" type="text" size="5" maxlength="5">
+                    <span class="input-group-addon">
+                        <a href="#/provincia/view/{{obj.obj_provincia.id}}">
+                            <span>{{obj.obj_provincia.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
         </div>
+            
+        
+         <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_comarca">comarca:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_comarca_group">
+                    <span class="input-group-addon" id="obj_comarca_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('comarca')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_comarca.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_comarca" name="obj_comarca" type="text" size="5" maxlength="5">
+                                        <span class="input-group-addon">
+                        <a href="#/comarca/view/{{obj.obj_comarca.id}}">
+                            <span>{{obj.obj_comarca.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+
+   
+
+
+
 
         <div class="control-group text-right">
             <div class="controls">
                 <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                <a class="btn btn-default" ng-click="plist()">Ir al listado de empresas</a>
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de comarcas</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>
@@ -86,10 +80,10 @@ THE SOFTWARE.
     <div ng-show="result != null">    
         <div class="alert alert-success" ng-show="result.status == 200">
             <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/empresa/view/{{id}}">Ver el registro modificado</a>
+            <a ng-href="#/municipio/view/{{id}}">Ver el registro modificado</a>
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
-            <h2>Error al modificar la empresa: no se ha modificado</h2>
+            <h2>Error al modificar la empresa: no se ha modificado la empresa</h2>
             <h3>Código: {{result.status}}</h3>
             <h3>Mensaje: {{result.message}}</h3>             
         </div>

@@ -45,10 +45,6 @@ moduloCentro.controller('CentroPListController', ['$scope', '$routeParams', 'ser
         $scope.visibles.id_empresa= true;
         
 
-        
-
-
-
 
         $scope.ob = "centro";
         $scope.op = "plist";

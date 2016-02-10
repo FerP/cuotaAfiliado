@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.AfiliadoDao;
 import net.daw.dao.implementation.CentroDao;
@@ -12,6 +14,7 @@ import net.daw.dao.implementation.EmpresaDao;
 import net.daw.dao.implementation.MunicipioDao;
 import net.daw.dao.implementation.SectorDao;
 import net.daw.dao.implementation.UsuarioDao;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class AfiliadoBean implements GenericBean{
 
@@ -24,9 +27,9 @@ public class AfiliadoBean implements GenericBean{
     @Expose
     private String apellido2 = "";
     @Expose
-    private String fnac= "";
+    private Date fnac = new Date();
     @Expose
-    private String falta = "";
+    private Date falta = new Date();
     @Expose
     private Integer movil = 0;
     @Expose
@@ -89,21 +92,23 @@ public class AfiliadoBean implements GenericBean{
         this.apellido2 = apellido2;
     }
 
-    public String getFnac() {
+    public Date getFnac() {
         return fnac;
     }
 
-    public void setFnac(String fnac) {
+    public void setFnac(Date fnac) {
         this.fnac = fnac;
     }
 
-    public String getFalta() {
+    public Date getFalta() {
         return falta;
     }
 
-    public void setFalta(String falta) {
+    public void setFalta(Date falta) {
         this.falta = falta;
     }
+
+   
 
     public Integer getMovil() {
         return movil;
@@ -175,13 +180,17 @@ public class AfiliadoBean implements GenericBean{
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "nombre:" + nombre + ",";
-        strJson += "apellido1:" + apellido1 + ",";
-        strJson += "apellido2:" + apellido2 + ",";
+        strJson += "nombre:" + EncodingUtilHelper.quotate(nombre) + ",";
+        strJson += "apellido1:" + EncodingUtilHelper.quotate(apellido1) + ",";
+        strJson += "apellido2:" + EncodingUtilHelper.quotate(apellido2) + ",";
         strJson += "fnac:" + fnac + ",";
         strJson += "falta:" + falta + ",";
         strJson += "movil:" + movil + ",";
-        strJson += "email:" + email + ",";
+        strJson += "email:" + EncodingUtilHelper.quotate(email) + ",";
+        strJson += "id_empresa:" + id_empresa + ",";
+        strJson += "id_centro:" + id_centro + ",";
+        strJson += "id_cuota:" + id_cuota;
+        /*
         if (expand) {
             strJson += "obj_empresa:" + obj_empresa.toJson(false) + ",";
 
@@ -205,6 +214,7 @@ public class AfiliadoBean implements GenericBean{
             strJson += "id_cuota:" + id_cuota + ",";
 
         }
+        */
         strJson += "}";
         return strJson;
     }
@@ -230,13 +240,13 @@ public class AfiliadoBean implements GenericBean{
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += nombre + ",";
-        strColumns += apellido1 + ",";      
-        strColumns += apellido2 + ",";
-        strColumns += fnac + ",";
-        strColumns += falta+ ",";      
+        strColumns += EncodingUtilHelper.quotate(nombre)+ ",";
+        strColumns += EncodingUtilHelper.quotate(apellido1) + ",";      
+        strColumns += EncodingUtilHelper.quotate(apellido2) + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fnac) + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(falta)+ ",";      
         strColumns += movil + ",";      
-        strColumns += email + ",";
+        strColumns += EncodingUtilHelper.quotate(email)+ ",";
         strColumns += id_empresa + ",";
         strColumns += id_centro + ",";
         strColumns += id_cuota;
@@ -246,15 +256,17 @@ public class AfiliadoBean implements GenericBean{
 
     @Override
     public String toPairs() {
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "nombre=" + nombre + ",";
-        strPairs += "apellido1=" + apellido1+ ",";
-        strPairs += "apellido2=" + apellido2 + ",";
-        strPairs += "fnac=" + fnac + ",";
-        strPairs += "falta=" + falta+ ",";
+        strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre)+ ",";
+        strPairs += "apellido1=" + EncodingUtilHelper.quotate(apellido1)+ ",";
+        strPairs += "apellido2=" + EncodingUtilHelper.quotate(apellido2) + ",";
+        strPairs += "fnac=" + EncodingUtilHelper.quotate(format.format(fnac)) + ",";
+        strPairs += "falta=" + EncodingUtilHelper.quotate(format.format(falta)) + ",";
         strPairs += "movil=" + movil + ",";
-        strPairs += "email=" + email + ",";
+        strPairs += "email=" + EncodingUtilHelper.quotate(email) + ",";
         strPairs += "id_empresa=" + id_empresa + ",";
         strPairs += "id_centro=" + id_centro + ",";
         strPairs += "id_cuota=" + id_cuota;
@@ -267,8 +279,8 @@ public class AfiliadoBean implements GenericBean{
         this.setNombre(oResultSet.getString("nombre"));
         this.setApellido1(oResultSet.getString("apellido1"));
         this.setApellido2(oResultSet.getString("apellido2"));
-        this.setFnac(oResultSet.getString("fnac"));
-        this.setFalta(oResultSet.getString("falta"));
+        this.setFnac(oResultSet.getDate("fnac"));
+        this.setFalta(oResultSet.getDate("falta"));
         this.setMovil(oResultSet.getInt("movil"));
         this.setEmail(oResultSet.getString("email"));
         

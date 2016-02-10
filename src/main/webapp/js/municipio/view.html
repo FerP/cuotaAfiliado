@@ -38,29 +38,27 @@ THE SOFTWARE.
                 </thead>
                 <tbody>
                     <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                    <tr><td>titulo</td><td>{{bean.nombre}}</td></tr> 
-                    <tr><td>contenido</td><td>{{bean.cif}}</td></tr> 
-                    <tr><td>alta</td><td>{{bean.contacto}}</td></tr> 
-                    <tr><td>cambio</td><td>{{bean.telefono}}</td></tr>
+                    <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr> 
+                   
                     <tr>
-                        <td>usuario</td>
+                        <td>provincia</td>
                         <td>
-                            <a href="#/usuario/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.login}}</a>
+                            <a href="#/provincia/view/{{bean.obj_provincia.id}}">{{bean.obj_provincia.nombre}}</a>
                         </td>
                     </tr> 
-                    <tr>
-                        <td>tipo de documento</td>
+                     <tr>
+                        <td>comarca</td>
                         <td>
-                            <a href="#/tipodocumento/view/{{bean.obj_tipodocumento.id}}">{{bean.obj_tipodocumento.descripcion}}</a>
+                            <a href="#/comarca/view/{{bean.obj_comarca.id}}">{{bean.obj_comarca.nombre}}</a>
                         </td>
                     </tr> 
     
                 </tbody>
             </table>  
             <div class="text-right" > 
-                <a class="btn btn-primary" href="#/empresa/edit/{{bean.id}}">Editar</a>
-                <a class="btn btn-danger" href="#/empresa/remove/{{bean.id}}">Borrar</a>
-                   <a class="btn btn-default" ng-click="plist()">Ir al listado de empresas</a>
+                <a class="btn btn-primary" href="#/municipio/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-danger" href="#/municipio/remove/{{bean.id}}">Borrar</a>
+                   <a class="btn btn-default" ng-click="plist()">Ir al listado de muncipios</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>

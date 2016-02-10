@@ -37,7 +37,7 @@ moduloEmpresa.controller('EmpresaRemoveController', ['$scope', '$routeParams', '
         $scope.ob = 'empresa';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un empresa";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-building-o";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;
         });

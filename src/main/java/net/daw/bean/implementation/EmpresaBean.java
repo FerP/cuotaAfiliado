@@ -2,15 +2,6 @@ package net.daw.bean.implementation;
 
 import net.daw.bean.publicinterface.GenericBean;
 import com.google.gson.annotations.Expose;
-import static com.sun.jndi.toolkit.dir.SearchFilter.format;
-import static com.sun.xml.internal.bind.unmarshaller.Messages.format;
-import static java.lang.String.format;
-import static java.lang.String.format;
-import static java.lang.String.format;
-import static java.lang.String.format;
-import static java.lang.String.format;
-import static java.lang.String.format;
-import static java.lang.String.format;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -133,10 +124,10 @@ public class EmpresaBean implements GenericBean {
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "nombre:" + nombre + ",";
-        strJson += "cif:" + cif + ",";
-        strJson += "alta:" + alta + ",";
-        strJson += "cambio:" + cambio + ",";
+        strJson += "nombre:" + EncodingUtilHelper.quotate(nombre) + ",";
+        strJson += "cif:" + EncodingUtilHelper.quotate(cif) + ",";
+//        strJson += "alta:" + alta + ",";
+//        strJson += "cambio:" + cambio + ",";
         strJson += "contacto:" + contacto + ",";
         strJson += "telefono:" + telefono + ",";
         

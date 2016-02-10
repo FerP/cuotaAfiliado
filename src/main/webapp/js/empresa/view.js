@@ -34,7 +34,7 @@
 moduloEmpresa.controller('EmpresaViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de Empresa";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-building-o";
         $scope.ob = 'empresa';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
@@ -44,7 +44,7 @@ moduloEmpresa.controller('EmpresaViewController', ['$scope', '$routeParams', 'se
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/empresa/plist');
+            $location.path('/empresa/view');
         };
         $scope.back = function () {
             window.history.back();

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class SectorBean implements GenericBean{
 
@@ -43,7 +44,7 @@ public class SectorBean implements GenericBean{
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "nombre:" + nombre + ","; 
+        strJson += "nombre:" + nombre; 
         strJson += "}";
         return strJson;
     }
@@ -60,7 +61,7 @@ public class SectorBean implements GenericBean{
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += nombre;
+        strColumns += EncodingUtilHelper.quotate(nombre);
 
         return strColumns;
     }
@@ -69,7 +70,7 @@ public class SectorBean implements GenericBean{
     public String toPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "nombre=" + nombre;
+        strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre);
 
         return strPairs;
     }

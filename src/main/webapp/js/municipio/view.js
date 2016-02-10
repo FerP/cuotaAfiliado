@@ -31,11 +31,11 @@
 
 
 
-moduloEmpresa.controller('EmpresaViewController', ['$scope', '$routeParams', 'serverService','$location',
+moduloMunicipio.controller('MunicipioViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
-        $scope.title = "Vista de Empresa";
+        $scope.title = "Vista de Municipio";
         $scope.icon = "fa-file-text-o";
-        $scope.ob = 'empresa';
+        $scope.ob = 'municipio';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
@@ -44,7 +44,7 @@ moduloEmpresa.controller('EmpresaViewController', ['$scope', '$routeParams', 'se
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/empresa/plist');
+            $location.path('/municipio/view');
         };
         $scope.back = function () {
             window.history.back();

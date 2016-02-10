@@ -27,13 +27,13 @@
  */
 
 'use strict';
-moduloEmpresa.controller('EmpresaEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
+moduloSector.controller('SectorEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
-        $scope.ob = 'empresa';
+        $scope.ob = 'sector';
         $scope.result = null;
-        $scope.title = "Edición de tipo de empresa";
+        $scope.title = "Edición de sector";
         $scope.icon = "fa-user";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

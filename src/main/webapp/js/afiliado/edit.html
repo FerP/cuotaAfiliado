@@ -1,0 +1,167 @@
+<div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+<div class="panel-body">
+    <form name="outerForm" class="form-horizontal" ng-show="result == null">
+
+        <div id="id-group" class="form-group">
+            <label class="col-sm-2 control-label" for="id">Identificador:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.id" type="text" id="id" class="form-control" name="id" size="15" placeholder="id" disabled="disabled">
+            </div>
+        </div>
+
+
+        <div id="nombre-group" class="form-group">
+            <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
+            <div class="control col-sm-8">
+                <input ng-model="obj.nombre" required type="text" id="nombre" 
+                       class="form-control" name="nombre" size="15" placeholder="nombre"
+                       ng-class="{error:!outerForm.$pristine && outerForm.nombre.$error.required}">
+            </div>
+            <span ng-show="!outerForm.$pristine && outerForm.nombre.$error.required">El campo nombre es obligatorio</span>
+        </div>
+
+
+        <div id="apellido1-group" class="form-group">
+            <label class="col-sm-2 control-label" for="apellido1">Apellido1:</label>
+            <div class="control col-sm-9">
+                <input ng-model="obj.apellido1" type="text" id="apellido1" class="form-control" name="apellido1" size="15" placeholder="apellido1">
+            </div>
+        </div>
+        
+         <div id="apellido2-group" class="form-group">
+            <label class="col-sm-2 control-label" for="apellido2">Apellido2:</label>
+            <div class="control col-sm-9">
+                <input ng-model="obj.apellido2" type="text" id="apellido2" class="form-control" name="apellido2" size="15" placeholder="apellido2">
+            </div>
+        </div>
+        
+          <div id="fnac-group" class="form-group">
+            <label class="col-sm-2 control-label" for="fnac">Fecha de nacimiento:</label>
+            <div class="control col-sm-3">
+                <div class="input-group date" id="fnac_group">
+                    <input type="text" class="form-control" starting-day="1" uib-datepicker-popup="dd/MM/yyyy" ng-model="obj.fnac" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions1" date-disabled="disabled(date, mode)" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" placeholder="Fecha de nacimiento" />
+                    <span class="input-group-addon" ng-click="open1()">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <div id="falta-group" class="form-group">
+            <label class="col-sm-2 control-label" for="falta">Fecha de alta:</label>
+            <div class="control col-sm-3">
+                <div class="input-group date" id="falta_group">
+                    <input type="text" class="form-control" starting-day="1" uib-datepicker-popup="dd/MM/yyyy" ng-model="obj.falta" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions2" date-disabled="disabled(date, mode)" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" placeholder="Fecha de alta" />
+                    <span class="input-group-addon" ng-click="open2()">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="movil-group" class="form-group">
+            <label class="col-sm-2 control-label" for="movil">móvil:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.movil" type="text" id="email" class="form-control" name="movil" size="15" placeholder="movil">
+            </div>
+        </div>
+           
+
+
+        <div id="email-group" class="form-group">
+            <label class="col-sm-2 control-label" for="email">email:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.email" type="text" id="email" class="form-control" name="email" size="15" placeholder="email">
+            </div>
+        </div>
+ 
+       
+        
+        
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_empresa">empresa</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_empresa_group">
+                    <span class="input-group-addon" id="obj_empresa_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('empresa')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_empresa.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_empresa" name="obj_empresa" type="text" size="5" maxlength="5">
+                    <span class="input-group-addon">
+                        <!--lo que hace que se muestre en pantalla selector el id y el nombre-->
+                        <a href="#/empresa/view/{{obj.obj_empresa.id}}">
+                            <span>{{obj.obj_empresa.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+            
+        
+         <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_centro">centro:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_centro_group">
+                    <span class="input-group-addon" id="obj_centro_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('centro')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_centro.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_centro" name="obj_centro" type="text" size="5" maxlength="5">
+                                        <span class="input-group-addon">
+                        <a href="#/centro/view/{{obj.obj_centro.id}}">
+                            <span>{{obj.obj_centro.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+        
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_cuota">cuota:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_cuota_group">
+                    <span class="input-group-addon" id="obj_cuota_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('cuota')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_cuota.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_cuota" name="obj_cuota" type="text" size="5" maxlength="5">
+                                        <span class="input-group-addon">
+                        <a href="#/cuota/view/{{obj.obj_cuota.id}}">
+                            <span>{{obj.obj_cuota.nombre}}</span>     
+                        </a>     
+                    </span>
+                </div>
+            </div>            
+        </div>
+        
+        
+        
+        
+
+
+
+        <div class="control-group text-right">
+            <div class="controls">
+                <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de afiliado</a>
+                <a class="btn btn-default" ng-click="close()">Cerrar</a>
+            </div>
+        </div>
+    </form>
+    <div ng-show="result != null">    
+        <div class="alert alert-success" ng-show="result.status == 200">
+            <h2>Se ha modificado el registro</h2>
+            <a ng-href="#/afiliado/view/{{id}}">Ver el registro modificado</a>
+        </div>
+        <div class="alert alert-danger" ng-show="result.status != 200">
+            <h2>Error al modificar la afiliado: no se ha modificado la afiliado</h2>
+            <h3>Código: {{result.status}}</h3>
+            <h3>Mensaje: {{result.message}}</h3>             
+        </div>
+    </div>
+</div>
+<div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>

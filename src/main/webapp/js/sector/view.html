@@ -38,29 +38,13 @@ THE SOFTWARE.
                 </thead>
                 <tbody>
                     <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                    <tr><td>titulo</td><td>{{bean.nombre}}</td></tr> 
-                    <tr><td>contenido</td><td>{{bean.cif}}</td></tr> 
-                    <tr><td>alta</td><td>{{bean.contacto}}</td></tr> 
-                    <tr><td>cambio</td><td>{{bean.telefono}}</td></tr>
-                    <tr>
-                        <td>usuario</td>
-                        <td>
-                            <a href="#/usuario/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.login}}</a>
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td>tipo de documento</td>
-                        <td>
-                            <a href="#/tipodocumento/view/{{bean.obj_tipodocumento.id}}">{{bean.obj_tipodocumento.descripcion}}</a>
-                        </td>
-                    </tr> 
-    
-                </tbody>
+                    <tr><td>nombre</td><td>{{bean.nombre}}</td></tr> 
+               </tbody>
             </table>  
             <div class="text-right" > 
-                <a class="btn btn-primary" href="#/empresa/edit/{{bean.id}}">Editar</a>
-                <a class="btn btn-danger" href="#/empresa/remove/{{bean.id}}">Borrar</a>
-                   <a class="btn btn-default" ng-click="plist()">Ir al listado de empresas</a>
+                <a class="btn btn-primary" href="#/sector/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-danger" href="#/sector/remove/{{bean.id}}">Borrar</a>
+                   <a class="btn btn-default" ng-click="plist()">Ir al listado de sectores</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>

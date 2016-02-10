@@ -102,12 +102,6 @@ THE SOFTWARE.
                                 <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
                                 
                                 <input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre">Nombre
-                                <input type="checkbox" ng-model="visibles.cif" ng-checked="visibles.alta">cif
-                                <input type="checkbox" ng-model="visibles.contacto" ng-checked="visibles.contacto">Contacto
-                                
-                                <input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario">Usuario
-                                <input type="checkbox" ng-model="visibles.id_tipodocumento" ng-checked="visibles.id_tipodocumento">Tipo
-                                <input type="checkbox" ng-model="visibles.telefono" ng-checked="visibles.telefono">Telefono
                                 
                                 
                                                                                                                                                              
@@ -125,15 +119,7 @@ THE SOFTWARE.
                                     <option value="id">Identificador</option>
                                    
                                     <option value="contenido">Nombre</option>
-                                    <option value="alta">Cif</option>
-                                    <option value="cambio">Contacto</option>
-                                    
-                                    <option value="id_usuario">telefono</option>                                    
-                                   
-                                    
-                                  
-                                    
-                                                                                      
+                                                          
                                 </select>
                                 <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                     <option style="display:none">selecciona una operacion</option>
@@ -157,7 +143,7 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-md-12">
                                 <p></p>
-                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
+                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="sectorForm">
                                     <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="clientFilterText">
                                     <input type="submit" class="btn" id="btnFiltrarClient" name="btnFiltrarClient" value="Filtrar" ng-click="doClientFilter()">
                                 </form>
@@ -192,21 +178,7 @@ THE SOFTWARE.
                         <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.cif">
-                        Cif
-                        <a ng-show="visibles.cif" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.cif" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th ng-show="visibles.contacto">
-                        Contacto
-                        <a ng-show="visibles.contacto" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.contacto" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th ng-show="visibles.telefono">
-                        Telefono
-                        <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
+                  
                     
                     <th>Acciones</th>
                 </tr>
@@ -215,10 +187,6 @@ THE SOFTWARE.
                 <tr ng-repeat="obj in page">
                     <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>
                     <td ng-show="visibles.nombre">{{obj.nombre}}</td>
-                    <td ng-show="visibles.cif">{{obj.cif}}</td>
-                    <td ng-show="visibles.contacto">{{obj.contacto}}</td>
-                    <td ng-show="visibles.telefono" class="text-right">{{obj.telefono}}</td>
-                    <td ng-show="visibles.id_tipodocumento"><a href="#/tipodocumento/view/{{obj.obj_tipodocumento.id}}">{{obj.obj_tipodocumento.descripcion}}</a></td>
                     
                     <td>
                          <div class="btn-group" role="group">
@@ -226,9 +194,10 @@ THE SOFTWARE.
                                 Acciones<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="btn btn-default action02" href="#/empresa/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
-                                <li><a class="btn btn-default action03" href="#/empresa/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                <li><a class="btn btn-default action04" href="#/empresa/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
+                                <li><a class="btn btn-default action01" href="#/sector/new/"><i class="fa fa-eye fa-2g"></i> Nuevo</a></li>
+                                <li><a class="btn btn-default action02" href="#/sector/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
+                                <li><a class="btn btn-default action03" href="#/sector/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
+                                <li><a class="btn btn-default action04" href="#/sector/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
                             </ul>
                         </div>
                     </td>

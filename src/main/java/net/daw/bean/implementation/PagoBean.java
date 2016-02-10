@@ -4,12 +4,15 @@ import com.google.gson.annotations.Expose;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.AfiliadoDao;
 import net.daw.dao.implementation.CuotaDao;
 import net.daw.dao.implementation.UsuarioDao;
 import net.daw.dao.implementation.EmpresaDao;
-import net.daw.dao.implementation.PeriodoDao;
+import net.daw.dao.implementation.ReciboDao;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 
 
@@ -18,10 +21,9 @@ public class PagoBean implements GenericBean {
     @Expose
     private Integer id;
     
-    @Expose
-    private String fpago = "";
+    @Expose   
+    private Date fpago = new Date();
    
-
     @Expose(serialize = false)
     private Integer id_afiliado = 0;
     @Expose(deserialize = false)
@@ -33,9 +35,9 @@ public class PagoBean implements GenericBean {
     private CuotaBean obj_cuota = null;
     
     @Expose(serialize = false)
-    private Integer id_periodo = 0;
+    private Integer id_recibo = 0;
     @Expose(deserialize = false)
-    private PeriodoBean obj_periodo = null;
+    private ReciboBean obj_recibo = null;
 
     public PagoBean() {
         this.id = 0;
@@ -53,11 +55,11 @@ public class PagoBean implements GenericBean {
         this.id = id;
     }
 
-    public String getFpago() {
+    public Date getFpago() {
         return fpago;
     }
 
-    public void setFpago(String fpago) {
+    public void setFpago(Date fpago) {
         this.fpago = fpago;
     }
 
@@ -93,20 +95,20 @@ public class PagoBean implements GenericBean {
         this.obj_cuota = obj_cuota;
     }
 
-    public Integer getId_periodo() {
-        return id_periodo;
+    public Integer getId_recibo() {
+        return id_recibo;
     }
 
-    public void setId_periodo(Integer id_periodo) {
-        this.id_periodo = id_periodo;
+    public void setId_recibo(Integer id_recibo) {
+        this.id_recibo = id_recibo;
     }
 
-    public PeriodoBean getObj_periodo() {
-        return obj_periodo;
+    public ReciboBean getObj_recibo() {
+        return obj_recibo;
     }
 
-    public void setObj_periodo(PeriodoBean obj_periodo) {
-        this.obj_periodo = obj_periodo;
+    public void setObj_recibo(ReciboBean obj_recibo) {
+        this.obj_recibo = obj_recibo;
     }
 
   
@@ -115,32 +117,9 @@ public class PagoBean implements GenericBean {
         String strJson = "{";
         strJson += "id:" + id + ",";
         strJson += "fpago:" + fpago + ",";
-     
-
-        if (expand) {
-            strJson += "obj_afiliado:" + obj_afiliado.toJson(false) + ",";
-
-        } else {
-            strJson += "id_afiliado:" + id_afiliado + ",";
-
-        }
-        
-         if (expand) {
-            strJson += "obj_cuota:" + obj_cuota.toJson(false) + ",";
-
-        } else {
-            strJson += "id_cuota:" + id_cuota + ",";
-
-        }
-         
-          if (expand) {
-            strJson += "obj_periodo:" + obj_periodo.toJson(false) + ",";
-
-        } else {
-            strJson += "id_periodo:" + id_periodo + ",";
-
-        }
-        
+        strJson += "id_afiliado:" + id_afiliado+ ",";
+        strJson += "id_cuota:" + id_cuota + ",";
+        strJson += "id_recibo:" + id_recibo;
         strJson += "}";
         return strJson;
     }
@@ -152,7 +131,7 @@ public class PagoBean implements GenericBean {
         strColumns += "fpago,";
         strColumns += "id_afiliado,";
         strColumns += "id_cuota,";
-        strColumns += "id_periodo";
+        strColumns += "id_recibo";
 
         return strColumns;
     }
@@ -161,22 +140,24 @@ public class PagoBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ","; 
-        strColumns += fpago+ ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fpago)+ ",";
         strColumns += id_afiliado + ",";
-        strColumns += id_cuota + ",";      
-        strColumns += id_periodo;
+        strColumns += id_cuota +",";
+        strColumns += id_recibo;
+        
 
         return strColumns;
     }
 
     @Override
     public String toPairs() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String strPairs = "";
         strPairs += "id=" + id + ",";     
-        strPairs += "fpago=" + fpago + ",";
-        strPairs += "cif=" + id_afiliado+ ",";
-        strPairs += "contacto=" + id_cuota + ",";      
-        strPairs += "id_usuario=" + id_periodo;
+        strPairs += "fpago=" + EncodingUtilHelper.stringifyAndQuotate(fpago) + ",";
+        strPairs += "id_afiliado=" + id_afiliado+ ",";
+        strPairs += "id_cuota=" + id_cuota + ",";      
+        strPairs += "id_recibo=" + id_recibo;
 
         return strPairs;
     }
@@ -184,7 +165,7 @@ public class PagoBean implements GenericBean {
     @Override
      public PagoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
-        this.setFpago(oResultSet.getString("fpago"));
+        this.setFpago(oResultSet.getDate("fpago"));
        
        if (expand > 0) {
             AfiliadoBean oAfiliadoBean = new AfiliadoBean();
@@ -208,13 +189,13 @@ public class PagoBean implements GenericBean {
        
        
        if (expand > 0) {
-            PeriodoBean oPeriodoBean = new PeriodoBean();
-            PeriodoDao oPeriodoDao = new PeriodoDao(pooledConnection);
-            oPeriodoBean.setId(oResultSet.getInt("id_periodo"));
-            oPeriodoBean = oPeriodoDao.get(oPeriodoBean, expand - 1);
-            this.setObj_periodo(oPeriodoBean);
+            ReciboBean oReciboBean = new ReciboBean();
+            ReciboDao oReciboDao = new ReciboDao(pooledConnection);
+            oReciboBean.setId(oResultSet.getInt("id_recibo"));
+            oReciboBean = oReciboDao.get(oReciboBean, expand - 1);
+            this.setObj_recibo(oReciboBean);
         } else {
-            this.setId_periodo(oResultSet.getInt("id_periodo"));
+            this.setId_recibo(oResultSet.getInt("id_recibo"));
         }
        
         return this;

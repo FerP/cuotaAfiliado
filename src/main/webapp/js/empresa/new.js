@@ -33,8 +33,8 @@ moduloEmpresa.controller('EmpresaNewController', ['$scope', '$routeParams', '$lo
         $scope.ob = 'empresa';
         $scope.op = 'new';
 
-        $scope.title = "Creación de un nuevo documento";
-        $scope.icon = "fa-file-text-o";
+        $scope.title = "Creación de una nueva empresa";
+        $scope.icon = "fa-building-o";
 
         $scope.result = null;
 
@@ -63,13 +63,6 @@ moduloEmpresa.controller('EmpresaNewController', ['$scope', '$routeParams', '$lo
                 $scope.result = data;
             });
         };
-        $scope.$watch('obj.obj_usuario.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('usuario', $scope.obj.obj_usuario.id)).then(function (data2) {
-                    $scope.obj.obj_usuario = data2.message;
-                });
-            }
-        });
 
         $scope.back = function () {
             window.history.back();

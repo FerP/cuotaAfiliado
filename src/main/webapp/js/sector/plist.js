@@ -30,25 +30,21 @@
 'use strict';
 /* Controllers */
 
-moduloEmpresa.controller('EmpresaPListController', ['$scope', '$routeParams', 'serverService', '$location',
+moduloSector.controller('SectorPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
 
 
         $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.nombre = true;
-        $scope.visibles.cif= true;
-        $scope.visibles.contacto = true;
-        $scope.visibles.telefono = true;
-        $scope.visibles.id_usuario = true;
         
 
 
 
 
-        $scope.ob = "empresa";
+        $scope.ob = "sector";
         $scope.op = "plist";
-        $scope.title = "Listado de empresas";
+        $scope.title = "Listado de sectores";
         $scope.icon = "fa-file-text-o";
         $scope.neighbourhood = 2;
 

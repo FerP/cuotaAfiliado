@@ -48,8 +48,33 @@ angular.module('Directives', [])
                 }
             }
         })
-
-
+        .directive('linksector', function () {
+            return {
+                restrict: 'E',
+                template: '<a ng-show="obj.id" href="#/sector/view/{{obj.id}}">{{obj.id}}-({{obj.nombre}})</a>',
+                scope: {
+                    obj: "=source"
+                }
+            }
+        })
+        .directive('linkcomarca', function () {
+            return {
+                restrict: 'E',
+                template: '<a ng-show="obj.id" href="#/comarca/view/{{obj.id}}">{{obj.id}}-({{obj.nombre}})</a>',
+                scope: {
+                    obj: "=source"
+                }
+            }
+        })
+        .directive('linkmuni', function () {
+            return {
+                restrict: 'E',
+                template: '<a ng-show="obj.id" href="#/municipio/view/{{obj.id}}">{{obj.id}}-({{obj.nombre}})</a>',
+                scope: {
+                    obj: "=source"
+                }
+            }
+        })        
         .directive('validatemin', function () {
             return {
                 restrict: 'A',

@@ -147,7 +147,11 @@
                         <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-
+                     <th ng-show="visibles.id_empresa" class="text-right">
+                        Empresa
+                        <a ng-show="visibles.id_empresa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.id_empresa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    </th>
                     <th ng-show="visibles.id_municipio" class="text-right">
                         Municipio
                         <a ng-show="visibles.id_municipio" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
@@ -158,11 +162,7 @@
                         <a ng-show="visibles.id_sector" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id_sector" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.id_empresa" class="text-right">
-                        Empresa
-                        <a ng-show="visibles.id_empresa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.id_empresa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
+                   
 
 
 
@@ -172,13 +172,14 @@
             <tbody>
                 <tr ng-repeat="obj in page">
                     <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>
-                    <td ng-show="visibles.nombre"  class="text-right">{{obj.nombre}}</td>
-                    <td ng-show="visibles.direccion"  class="text-right">{{obj.direccion}}</td>
-                    <td ng-show="visibles.cp"  class="text-right">{{obj.cp}}</td>
-                    <td ng-show="visibles.telefono" class="text-right">{{obj.telefono}}</td>
-                    <td ng-show="visibles.id_municipio"  class="text-right">{{obj.obj_municipio.nombre}}</td>
-                    <td ng-show="visibles.id_sector"  class="text-right">{{obj.obj_sector.nombre}}</td>
-                    <td ng-show="visibles.id_empresa"  class="text-right"><a href="#/empresa/view/{{obj.obj_empresa.id}}">{{obj.obj_empresa.nombre}}</td>
+                    <td ng-show="visibles.nombre">{{obj.nombre}}</td>
+                    <td ng-show="visibles.direccion">{{obj.direccion}}</td>
+                    <td ng-show="visibles.cp">{{obj.cp}}</td>
+                    <td ng-show="visibles.telefono">{{obj.telefono}}</td>
+                    <td ng-show="visibles.id_empresa">{{obj.obj_empresa.nombre}}</td>
+                    <td ng-show="visibles.id_municipio">{{obj.obj_municipio.nombre}}</td>
+                    <td ng-show="visibles.id_sector">{{obj.obj_sector.nombre}}</td>
+                    
                     
 
 
