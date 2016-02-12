@@ -84,7 +84,7 @@
 
 
                                 <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
-                                <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
+                               <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
 
                                 <p></p>
                             </div>
@@ -96,7 +96,7 @@
                                 <p></p>
                                 <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
                                     <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="clientFilterText">
-                                    <input type="submit" class="btn" id="btnFiltrarClient" name="btnFiltrarClient" value="Filtrar" ng-click="doClientFilter()">
+                                   <!-- <input type="submit" class="btn" id="btnFiltrarClient" name="btnFiltrarClient" value="Filtrar" ng-click="doClientFilter()">-->
                                 </form>
                                 <p></p>
                             </div>
@@ -170,7 +170,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="obj in page">
+                <tr ng-repeat="obj in page|filter:clientFilterText">
                     <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>
                     <td ng-show="visibles.nombre">{{obj.nombre}}</td>
                     <td ng-show="visibles.direccion">{{obj.direccion}}</td>

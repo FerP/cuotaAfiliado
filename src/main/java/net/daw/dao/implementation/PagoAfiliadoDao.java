@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.daw.bean.implementation.PagoAfiliadoBean;
-import net.daw.bean.implementation.PagoBean;
 import net.daw.dao.publicinterface.TableDaoInterface;
 import net.daw.dao.publicinterface.ViewDaoInterface;
 import net.daw.data.implementation.MysqlDataSpImpl;
@@ -14,17 +13,13 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
-    public class PagoAfiliadoDao implements ViewDaoInterface<PagoAfiliadoBean>, TableDaoInterface<PagoAfiliadoBean> {
-   
-   /* private String strSQL = "SELECT pa.id_a, pa.id_c, pa.id_r, a.nombre as nombreafiliado, a.apellido1, a.movil, c.tipocuota as tipocuotacuota, c.importe, r.descripcion as descripcionrecibo, r.emision, r.periodo FROM pagoafiliado pa, afiliado a, cuota c, recibo r WHERE a.id = pa.id_afiliado AND c.id = pa.id_cuota AND r.id= pa.id_recibo AND 1=1  ";  */
-    
-    private String strSQL = "select * from pagoAfiliado where 1=1";
-    private String strTable = "pagoafiliado";
+public class PagoAfiliadoDao implements ViewDaoInterface<PagoAfiliadoBean>, TableDaoInterface<PagoAfiliadoBean> {
+
+    private String strTable = "pagoAfiliado";
+    private String strSQL = "SELECT p.id, a.nombre, a.apellido1, a.apellido2, c.tipocuota FROM pagoAfiliado as p, afiliado as a, cuota as c WHERE p.id_afiliado=a.id and p.id_cuota=c.id and 1=1";
+    //private String strSQL="SELECT * FROM pagoafiliado p, afiliado a,  WHERE 1=1";
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
-    
-    
-    
 
     public PagoAfiliadoDao(Connection oPooledConnection) throws Exception {
         try {
@@ -61,68 +56,49 @@ import net.daw.helper.statics.SqlBuilder;
 
     @Override
     public ArrayList<PagoAfiliadoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-    
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<PagoAfiliadoBean> arrPagoAfiliadoBean = new ArrayList<>();
+        ArrayList<PagoAfiliadoBean> arrPago = new ArrayList<>();
         try {
             ResultSet oResultSet = oMysql.getAllSql(strSQL);
             if (oResultSet != null) {
                 while (oResultSet.next()) {
                     PagoAfiliadoBean oPagoAfiliadoBean = new PagoAfiliadoBean();
-                    arrPagoAfiliadoBean.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
+                    arrPago.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
                 }
             }
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
-        return arrPagoAfiliadoBean;
+        return arrPago;
     }
 
     @Override
     public ArrayList<PagoAfiliadoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<PagoAfiliadoBean> arrPagoAfiliado = new ArrayList<>();
+        ArrayList<PagoAfiliadoBean> arrPago = new ArrayList<>();
         try {
             ResultSet oResultSet = oMysql.getAllSql(strSQL);
             if (oResultSet != null) {
                 while (oResultSet.next()) {
                     PagoAfiliadoBean oPagoAfiliadoBean = new PagoAfiliadoBean();
-                    arrPagoAfiliado.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
+                    arrPago.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
                 }
             }
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
-        return arrPagoAfiliado;
+        return arrPago;
     }
 
-    @Override
-    public PagoAfiliadoBean get(PagoAfiliadoBean oPagoAfiliadoBean, Integer expand) throws Exception {
-        if (oPagoAfiliadoBean.getId() > 0) {
-            try {
-                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oPagoAfiliadoBean.getId() + " ");
-                if (oResultSet != null) {
-                    while (oResultSet.next()) {
-                        oPagoAfiliadoBean = oPagoAfiliadoBean.fill(oResultSet, oConnection, expand);
-                    }
-                }
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-            }
-        } else {
-            oPagoAfiliadoBean.setId(0);
-        }
-        return oPagoAfiliadoBean;
-    }
-
-    /*Filtrar pago por afiliado*/
-     public PagoAfiliadoBean getPagoFiltradoPorAfiliado(PagoAfiliadoBean oPagoAfiliadoBean, Integer expand) throws Exception {
+        // -----------------
+    // MÉTODO PARA SACAR EL PAGO EN LA PANTALLA DE AFILIADO
+    public PagoAfiliadoBean getPagosFiltradoAfiliado(PagoAfiliadoBean oPagoAfiliadoBean, Integer expand) throws Exception {
         ResultSet oResultSet = null;
         try {
 
-            oResultSet = oMysql.getAllSql(strSQL + " AND pa.id_afiliado= " + oPagoAfiliadoBean.getId_afiliado());
+            oResultSet = oMysql.getAllSql(strSQL + " AND id_afiliado= " + oPagoAfiliadoBean.getId_afiliado());
 
             if (oResultSet != null) {
                 while (oResultSet.next()) {
@@ -137,159 +113,25 @@ import net.daw.helper.statics.SqlBuilder;
         return oPagoAfiliadoBean;
     }
     
-    
-    
-    
-    /*Métodos necesarios para obtener cuotas respectivas de cada afiliado*/
-    
-    
-    
-    /*Respecto afiliado*/
-    
-    public int getPagesAfiliado(int id_afiliado, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND pa.id_afiliado=" + id_afiliado;
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-     public int getCountAfiliado(int id_afiliado, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND pa.id_afiliado=" + id_afiliado;
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-    
-    
-     public ArrayList<PagoAfiliadoBean> getPageAfiliado(int id_afiliado, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        strSQL += "AND pa.id_afiliado=" + id_afiliado;
-        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<PagoAfiliadoBean> arrPagoAfiliadoBean = new ArrayList<>();
-        try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    PagoAfiliadoBean oPagoAfiliadoBean = new PagoAfiliadoBean();
-                    arrPagoAfiliadoBean.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
+    @Override
+    public PagoAfiliadoBean get(PagoAfiliadoBean oPagoAfiliadoBean, Integer expand) throws Exception {
+        if (oPagoAfiliadoBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id_afiliado= " + oPagoAfiliadoBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oPagoAfiliadoBean = oPagoAfiliadoBean.fill(oResultSet, oConnection, expand);
+                    }
                 }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
             }
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        } else {
+            oPagoAfiliadoBean.setId(0);
         }
-        return arrPagoAfiliadoBean;
-    }
-    
-    /*Respecto cuota*/
-     
-     
-     public int getPagesCuota(int id_cuota, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND pa.id_cuota=" + id_cuota;
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
+        return oPagoAfiliadoBean;
     }
 
-    public int getCountCuota(int id_cuota, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND pa.id_cuota=" + id_cuota;
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    public ArrayList<PagoAfiliadoBean> getPageCuota(int id_cuota, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        strSQL += "AND pa.id_cuota=" + id_cuota;
-        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<PagoAfiliadoBean> arrPagoAfiliadoBean= new ArrayList<>();
-        try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    PagoAfiliadoBean oPagoAfiliadoBean = new PagoAfiliadoBean();
-                    arrPagoAfiliadoBean.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
-                }
-            }
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-        }
-        return arrPagoAfiliadoBean;
-    }
-     
-     
-      /*Respecto recibo*/
-     
-     
-      
-     
-     public int getPagesRecibo(int id_recibo, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND pa.id_recibo=" + id_recibo;
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    public int getCountRecibo(int id_recibo, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND pa.id_recibo=" + id_recibo;
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    public ArrayList<PagoAfiliadoBean> getPageRecibo(int id_recibo, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        strSQL += "AND pa.id_recibo=" + id_recibo;
-        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<PagoAfiliadoBean> arrPagoAfiliadoBean= new ArrayList<>();
-        try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    PagoAfiliadoBean oPagoAfiliadoBean = new PagoAfiliadoBean();
-                    arrPagoAfiliadoBean.add(oPagoAfiliadoBean.fill(oResultSet, oConnection, expand));
-                }
-            }
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-        }
-        return arrPagoAfiliadoBean;
-    }
-     
-    
-    /*Otros métodos*/
     @Override
     public Integer set(PagoAfiliadoBean oPagoAfiliadoBean) throws Exception {
           Integer iResult = null;
@@ -322,7 +164,5 @@ import net.daw.helper.statics.SqlBuilder;
         }
         return result;
     }
-
-    
 
 }

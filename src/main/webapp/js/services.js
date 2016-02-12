@@ -66,6 +66,10 @@ angular.module('Services', [])
 //
 //                    });
                 },
+                //pago filtrado afiliado
+               promise_getpagosfiltradoafiliado: function (strClass, id) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getpagosfiltradoafiliado&id=' + id, 'GET', '');
+                },
                 promise_getMeta: function (strClass) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getmetainformation', 'GET', '');
                 },
@@ -84,7 +88,17 @@ angular.module('Services', [])
                 promise_setOne: function (strClass, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
+                    
                 },
+                //cuotaAfiliado
+                promise_setOneAfiliado: function (jsonfile) {
+                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                    return $http.get(configuration.getAppUrl() + '?ob=cuotaAfiliado' + '&op=set', {params: jsonfile});
+                },
+                
+                
+                
+                
                 getDataFromPromise: function (promise) {
                     return promise.then(function (result) {
                         return result.data;

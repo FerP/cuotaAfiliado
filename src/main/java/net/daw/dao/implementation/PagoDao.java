@@ -16,7 +16,7 @@ import net.daw.helper.statics.SqlBuilder;
 public class PagoDao implements ViewDaoInterface<PagoBean>, TableDaoInterface<PagoBean> {
 
     private String strTable = "pago";
-    private String strSQL = "select * from pago where 1=1 ";
+    private String strSQL="SELECT * FROM pago WHERE 1=1";
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
 
@@ -90,7 +90,7 @@ public class PagoDao implements ViewDaoInterface<PagoBean>, TableDaoInterface<Pa
         }
         return arrPago;
     }
-
+    
     @Override
     public PagoBean get(PagoBean oPagoBean, Integer expand) throws Exception {
         if (oPagoBean.getId() > 0) {

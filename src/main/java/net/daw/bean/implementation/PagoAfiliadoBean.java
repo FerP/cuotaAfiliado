@@ -21,6 +21,7 @@ public class PagoAfiliadoBean implements GenericBean {
     @Expose
     private Integer id;
     
+  
     @Expose(serialize = false)
     private Integer id_afiliado = 0;
     @Expose(deserialize = false)
@@ -31,10 +32,6 @@ public class PagoAfiliadoBean implements GenericBean {
     @Expose(deserialize = false)
     private CuotaBean obj_cuota = null;
     
-    @Expose(serialize = false)
-    private Integer id_recibo = 0;
-    @Expose(deserialize = false)
-    private ReciboBean obj_recibo = null;
 
     public PagoAfiliadoBean() {
         this.id = 0;
@@ -51,8 +48,6 @@ public class PagoAfiliadoBean implements GenericBean {
     public void setId(Integer id) {
         this.id = id;
     }
-
-   
 
     public Integer getId_afiliado() {
         return id_afiliado;
@@ -86,30 +81,11 @@ public class PagoAfiliadoBean implements GenericBean {
         this.obj_cuota = obj_cuota;
     }
 
-    public Integer getId_recibo() {
-        return id_recibo;
-    }
-
-    public void setId_recibo(Integer id_recibo) {
-        this.id_recibo = id_recibo;
-    }
-
-    public ReciboBean getObj_recibo() {
-        return obj_recibo;
-    }
-
-    public void setObj_recibo(ReciboBean obj_recibo) {
-        this.obj_recibo = obj_recibo;
-    }
-
-  
-
-    public String toJson(Boolean expand) {
+       public String toJson(Boolean expand) {
         String strJson = "{";
-        strJson += "id:" + id + ",";  
+        strJson += "id:" + id + ",";
         strJson += "id_afiliado:" + id_afiliado+ ",";
-        strJson += "id_cuota:" + id_cuota + ",";
-        strJson += "id_recibo:" + id_recibo;
+        strJson += "id_cuota:" + id_cuota;
         strJson += "}";
         return strJson;
     }
@@ -119,8 +95,7 @@ public class PagoAfiliadoBean implements GenericBean {
         String strColumns = "";
         strColumns += "id,";      
         strColumns += "id_afiliado,";
-        strColumns += "id_cuota,";
-        strColumns += "id_recibo";
+        strColumns += "id_cuota";
 
         return strColumns;
     }
@@ -130,8 +105,7 @@ public class PagoAfiliadoBean implements GenericBean {
         String strColumns = "";
         strColumns += id + ","; 
         strColumns += id_afiliado + ",";
-        strColumns += id_cuota +",";
-        strColumns += id_recibo;
+        strColumns += id_cuota;
         
 
         return strColumns;
@@ -143,8 +117,7 @@ public class PagoAfiliadoBean implements GenericBean {
         String strPairs = "";
         strPairs += "id=" + id + ",";     
         strPairs += "id_afiliado=" + id_afiliado+ ",";
-        strPairs += "id_cuota=" + id_cuota + ",";      
-        strPairs += "id_recibo=" + id_recibo;
+        strPairs += "id_cuota=" + id_cuota;
 
         return strPairs;
     }
@@ -152,7 +125,6 @@ public class PagoAfiliadoBean implements GenericBean {
     @Override
      public PagoAfiliadoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
-       
        
        if (expand > 0) {
             AfiliadoBean oAfiliadoBean = new AfiliadoBean();
@@ -173,18 +145,7 @@ public class PagoAfiliadoBean implements GenericBean {
         } else {
             this.setId_cuota(oResultSet.getInt("id_cuota"));
         }
-       
-       
-       if (expand > 0) {
-            ReciboBean oReciboBean = new ReciboBean();
-            ReciboDao oReciboDao = new ReciboDao(pooledConnection);
-            oReciboBean.setId(oResultSet.getInt("id_recibo"));
-            oReciboBean = oReciboDao.get(oReciboBean, expand - 1);
-            this.setObj_recibo(oReciboBean);
-        } else {
-            this.setId_recibo(oResultSet.getInt("id_recibo"));
-        }
-       
+              
         return this;
     }
 

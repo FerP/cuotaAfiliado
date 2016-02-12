@@ -45,7 +45,7 @@ var openAusias = angular.module('myApp', [
     'afiliadoControllers',
     'reciboControllers',
     'pagoControllers',
-    'pagoafiliadoControllers',
+    'pagoAfiliadoControllers',
 //    'usuarioControllers',
 //    'tipodocumentoControllers',
     'ui.bootstrap',
@@ -145,7 +145,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/afiliado/remove/:id', {templateUrl: 'js/afiliado/remove.html', controller: 'AfiliadoRemoveController'});
         $routeProvider.when('/afiliado/view/:id', {templateUrl: 'js/afiliado/view.html', controller: 'AfiliadoViewController'});
         $routeProvider.when('/afiliado/plist/:page?/:rpp?', {templateUrl: 'js/afiliado/plist.html', controller: 'AfiliadoPListController'});
-        
+        $routeProvider.when('/pagoafiliado/plist/:page?/:rpp?/:id_afiliado?', {templateUrl: 'js/pagoafiliado/plist.html', controller: 'PagoAfiliadoPListController'});
         
         
         //------------ 
@@ -161,7 +161,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         
         
         
-        $routeProvider.when('/pagoafiliado/plist/:page?/:rpp?', {templateUrl: 'js/pagoafiliado/plist.html', controller: 'PagoafiliadoPListController'});  
+        //$routeProvider.when('/pagoafiliado/plist/:page?/:rpp?', {templateUrl: 'js/pagoafiliado/plist.html', controller: 'PagoafiliadoPListController'});  
 
 //        $routeProvider.when('/usuario/selection/:page/:rpp', {templateUrl: 'js/usuario/selection.html', controller: 'UsuarioSelectionController'});
 //        $routeProvider.when('/usuario/new', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
@@ -179,8 +179,9 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/pago/view/:id', {templateUrl: 'js/pago/view.html', controller: 'PagoViewController'});
         $routeProvider.when('/pago/plist/:page?/:rpp?', {templateUrl: 'js/pago/plist.html', controller: 'PagoPListController'}); 
         
-        
-        
+        //Rutas pagoAfiliado
+        $routeProvider.when('/pagoAfiliado/plist/:page?/:rpp?/:id_afiliado?', {templateUrl: 'js/pagoAfiliado/plist.html', controller: 'PagoAfiliadoPListController'});
+        $routeProvider.when('/pagoAfiliado/view/:id', {templateUrl: 'js/pagoAfiliado/view.html', controller: 'PagoAfiliadoViewController'});
         
         
         
@@ -203,7 +204,7 @@ var moduloCuota = angular.module('cuotaControllers', []);
 var moduloAfiliado = angular.module('afiliadoControllers', []);
 var moduloRecibo = angular.module('reciboControllers', []);
 var moduloPago = angular.module('pagoControllers', []);
-var moduloPagoAfiliado = angular.module('pagoafiliadoControllers', []);
+var moduloPagoAfiliado = angular.module('pagoAfiliadoControllers', []);
 
 
 

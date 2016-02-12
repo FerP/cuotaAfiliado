@@ -31,24 +31,24 @@
 
 'use strict';
 
-moduloPago.controller('PagoPListController', ['$scope', '$routeParams', 'serverService', '$location',
+moduloPagoAfiliado.controller('PagoAfiliadoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         
         $scope.visibles={};
         $scope.visibles.id = true;
-        $scope.visibles.fpago = true;
-        $scope.visibles.id_afiliado= true;
-        $scope.visibles.id_cuota = true;
-        $scope.visibles.id_recibo= true;
+        $scope.visibles.nombre = true;
+        $scope.visibles.apellido1 = true;
+        $scope.visibles.apellido2 = true;
+        $scope.visibles.tipocuota = true;
        
 
 
-        $scope.ob = "pago";
+        $scope.ob = "pagoAfiliado";
         $scope.op = "plist";
-        $scope.title = "Listado de pagos";
+        $scope.title = "Listado de Pagos afiliados";
         $scope.icon = "fa-credit-card";
         $scope.neighbourhood = 2;
-        $scope.id = $routeParams.id;
+        $scope.id = $routeParams.id_afiliado;
 
         if (!$routeParams.page) {
             $routeParams.page = 1;

@@ -105,7 +105,7 @@ public class PagoService implements TableServiceInterface, ViewServiceInterface 
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
-
+    
     @Override
     public String getall() throws Exception {
         if (this.checkpermission("getall")) {

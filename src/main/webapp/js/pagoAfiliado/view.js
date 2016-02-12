@@ -31,21 +31,17 @@
 
 
 
-moduloPago.controller('PagoViewController', ['$scope', '$routeParams', 'serverService','$location',
-    function ($scope, $routeParams, serverService,$location) {
-        $scope.title = "Vista de Pago";
-        $scope.icon = "fa-credit-card";
-        $scope.ob = 'pago';
+moduloPagoAfiliado.controller('PagoAfiliadoViewController', ['$scope', '$routeParams', 'serverService',
+    function ($scope, $routeParams, serverService) {
+        $scope.title = "Vista de Pagos";
+        $scope.icon = "fa-money";
+        $scope.ob = 'pagoAfiliado';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getpagosfiltradoafiliado($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/pago/plist');
-        };
+        
+      
         $scope.back = function () {
             window.history.back();
         };

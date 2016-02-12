@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-02-2016 a las 14:34:31
+-- Tiempo de generación: 11-02-2016 a las 17:17:24
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.30
 
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `pago` (
 INSERT INTO `pago` (`id`, `fpago`, `id_afiliado`, `id_cuota`, `id_recibo`) VALUES
 (1, '2016-02-16', 1, 1, 1),
 (2, '2016-02-08', 2, 2, 2),
-(3, '2016-02-12', 1, 3, 1),
+(3, '2016-02-07', 1, 2, 1),
 (4, '2016-02-17', 2, 1, 1);
 
 -- --------------------------------------------------------
@@ -214,11 +214,20 @@ INSERT INTO `pago` (`id`, `fpago`, `id_afiliado`, `id_cuota`, `id_recibo`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `pagoafiliado` (
-  `id` int(2) NOT NULL,
-  `id_afiliado` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_cuota` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_recibo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(10) NOT NULL,
+  `id_afiliado` int(2) DEFAULT NULL,
+  `id_cuota` int(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pagoafiliado`
+--
+
+INSERT INTO `pagoafiliado` (`id`, `id_afiliado`, `id_cuota`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 1, 2),
+(4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -361,7 +370,8 @@ ALTER TABLE `pago`
 -- Indices de la tabla `pagoafiliado`
 --
 ALTER TABLE `pagoafiliado`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pago` (`id`);
 
 --
 -- Indices de la tabla `provincia`
@@ -435,7 +445,7 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `pagoafiliado`
 --
 ALTER TABLE `pagoafiliado`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `provincia`
 --

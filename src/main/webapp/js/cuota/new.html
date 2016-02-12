@@ -67,8 +67,8 @@ THE SOFTWARE.
     </form>
     <div ng-show="result != null">    
         <div class="alert alert-success" ng-show="result.status == 200">
-            <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/cuota/view/{{id}}">Ver el registro modificado</a>
+            <h2>Se ha creado el registro</h2>
+            <a ng-href="#/cuota/view/{{result.message}}">Ver el registro creado</a>
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
             <h2>Error al crear el cuota: no se ha creado</h2>

@@ -38,7 +38,6 @@ THE SOFTWARE.
                 </thead>
                 <tbody>
                     <tr><td>id</td><td>{{bean.id}}</td></tr>        
-                    <tr><td>Fecha de Pago</td><td>{{bean.fpago}}</td></tr> 
                     
                     <tr>
                         <td>Afiliado</td>
@@ -53,21 +52,16 @@ THE SOFTWARE.
                         </td>
                     </tr> 
                     <tr>
-                        <td>Recibo</td>
-                        <td>
-                            <a href="#/recibo/view/{{bean.obj_recibo.id}}">{{bean.obj_recibo.descripcion}}</a>
-                        </td>
-                    </tr> 
-                    <tr>
                       
                     </tr> 
     
                 </tbody>
             </table>  
             <div class="text-right" > 
-                <a class="btn btn-primary" href="#/pago/edit/{{bean.id}}">Editar</a>
-                <a class="btn btn-danger" href="#/pago/remove/{{bean.id}}">Borrar</a>
-                   <a class="btn btn-default" ng-click="plist()">Ir al listado de pagos</a>
+                <a class="btn btn-primary" href="#/afiliado/edit/{{bean.obj_afiliado.id}}">Editar</a>
+                <a class="btn btn-danger" href="#/afiliado/remove/{{bean.obj_afiliado.id}}">Borrar</a>
+                <a class="btn btn-default" href="#/afiliado/plist/">Ir al listado de Afiliados</a>
+                <a class="btn btn-default" href="/cuotaAfiliado/#/">Ir al Inicio</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>
