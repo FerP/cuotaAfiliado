@@ -43,6 +43,7 @@ moduloAfiliado.controller('AfiliadoViewController', ['$scope', '$routeParams', '
         $scope.close = function () {
             $location.path('/home');
         };
+        //función que al hacer click en el plist del edit de html te lleva al listado empresas
         $scope.plist = function () {
             $location.path('/afiliado/plist');
         };

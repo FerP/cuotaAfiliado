@@ -38,10 +38,10 @@ THE SOFTWARE.
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                        <tr><td>descripcion</td><td>{{bean.descripcion}}</td></tr>
-                        <tr><td>emision</td><td>{{bean.emision}}</td></tr> 
-                        <tr><td>periodo</td><td>{{bean.periodo}}</td></tr> 
+                        <tr><td>Id</td><td>{{bean.id}}</td></tr>       
+                        <tr><td>Descripcion</td><td>{{bean.descripcion}}</td></tr>
+                        <tr><td>Emision</td><td>{{bean.emision}}</td></tr> 
+                        <tr><td>Periodo</td><td>{{bean.periodo}}</td></tr> 
                     </tbody>
                 </table>  
                 <div class="text-right" > 
@@ -54,7 +54,7 @@ THE SOFTWARE.
                 <br>
                 <h2  ng-show="result.message == 0" class="alert alert-success">No se ha podido eliminar el registro</h2>
                 <h2  ng-show="result.message == 1" class="alert alert-success">Se ha eliminado el registro</h2>
-                <a class="btn btn-default" ng-click="back()">Volver</a>
+                <a class="btn btn-default" href="#/recibo/plist/10">Volver al listado de recibos</a>
             </div>
             <div ng-show="result.status && !result.status == 200">
                 <br>

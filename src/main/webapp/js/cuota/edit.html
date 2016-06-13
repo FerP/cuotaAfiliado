@@ -1,30 +1,4 @@
-<!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-openAUSIAS: The stunning micro-library that helps you to develop easily 
-            AJAX web applications by using Java and jQuery
-openAUSIAS is distributed under the MIT License (MIT)
-Sources at https://github.com/rafaelaznar/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
--->
 <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
     <form name="outerForm" class="form-horizontal" ng-show="result == null">
@@ -36,30 +10,51 @@ THE SOFTWARE.
             </div>
         </div>
 
-
-        <div id="tipocuota-group" class="form-group">
-            <label class="col-sm-2 control-label" for="tipocuota">Tipo de Cuota:</label>
+         <div id="tipocuota-group" class="form-group"
+             ng-class="{'has-error': (outerForm.tipocuota.$error.required || outerForm.tipocuota.$error.minlength) || outerForm.tipocuota.$error.pattern && !outerForm.tipocuota.$pristine}">
+            <label class="col-sm-2 control-label" for="tipocuota">Tipocuota:</label>
             <div class="control col-sm-8">
-                <input ng-model="obj.tipocuota" required type="text" id="tipocuota" 
-                       class="form-control" name="tipocuota" size="15" placeholder="tipocuota"
-                       ng-class="{error:!outerForm.$pristine && outerForm.tipocuota.$error.required}">
-            </div>
+                <input ng-model="obj.tipocuota"  
+                       type="text" 
+                       id="tipocuota" 
+                       class="form-control" 
+                       name="tipocuota" 
+                       size="15" 
+                       ng-pattern="/^[a-zA-Z ñáéíóú]*$/" 
+                       placeholder="tipocuota" 
+                       minlength="3"                       
+                       maxlength="200"
+                       required>            
             <span ng-show="!outerForm.$pristine && outerForm.tipocuota.$error.required">El campo tipocuota es obligatorio</span>
+            <span class="help-block" ng-show="!outerForm.tipocuota.$pristine && outerForm.tipocuota.$error.pattern">El campo tipocuota no puede tener ningún valor numérico</span>
+            <span class="help-block" ng-show="!outerForm.tipocuota.$pristine && outerForm.tipocuota.$error.minlength">El campo tipocuota debe tener al menos 3 caracteres</span>
+            <span class="help-block" ng-show="!outerForm.tipocuota.$pristine && outerForm.tipocuota.$error.maxlength">El campo tipocuota debe tener como máximo 200 caracteres</span>
+        </div>
         </div>
         
-        
-         <div id="importe-group" class="form-group">
+         <div id="importe-group" class="form-group"        
+             ng-class="{'has-error': (outerForm.importe.$error.required
+                                 || outerForm.importe.$error.numbersOnly)
+                                 || outerForm.importe.$error.pattern                        
+                                 && !outerForm.importe.$pristine}">
             <label class="col-sm-2 control-label" for="importe">Importe:</label>
-            <div class="control col-sm-8">
-                <input ng-model="obj.importe" required type="text" id="importe" 
-                       class="form-control" name="importe" size="15" placeholder="importe"
-                       ng-class="{error:!outerForm.$pristine && outerForm.importe.$error.required}">
+            <div class="control col-sm-3">
+                <input type="text" 
+                       ng-model="obj.importe"                     
+                       id="importe" 
+                       class="form-control" 
+                       name="importe" 
+                       size="5" 
+                       placeholder="importe"
+                       ng-pattern="/^[0-9]{1,7}(\.[0-9]+)?$/"
+                       numbersOnly
+                       minlength="2"
+                       maxlength="5"
+                       required>
+                <span class="help-block" ng-show="!outerForm.importe.$pristine && outerForm.importe.$error.required">El campo importe es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.importe.$pristine && outerForm.importe.$error.pattern">El campo importe no pueden ser letras</span>                
             </div>
-            <span ng-show="!outerForm.$pristine && outerForm.importe.$error.required">El campo importe es obligatorio</span>
         </div>
-
-
- 
 
         <div class="control-group text-right">
             <div class="controls">

@@ -27,7 +27,7 @@ THE SOFTWARE.
 -->
 <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
-    <form name="outerForm" class="form-horizontal" ng-show="result == null">
+      <form name="outerForm" class="form-horizontal" ng-show="result == null">
 
         <div id="id-group" class="form-group">
             <label class="col-sm-2 control-label" for="id">Identificador:</label>
@@ -37,40 +37,73 @@ THE SOFTWARE.
         </div>
 
 
-        <div id="descripcion-group" class="form-group">
-            <label class="col-sm-2 control-label" for="descripcion">Descripcion:</label>
+         <div id="descripcion-group" class="form-group"
+             ng-class="{'has-error': (outerForm.descripcion.$error.minlength || outerForm.descripcion.$error.required) && !outerForm.descripcion.$pristine}">
+            <label class="col-sm-2 control-label" for="descripcion">Descripción:</label>
             <div class="control col-sm-8">
-                <input ng-model="obj.descripcion" required type="text" id="descripcion" 
-                       class="form-control" name="descripcion" size="15" placeholder="descripcion"
-                       ng-class="{error:!outerForm.$pristine && outerForm.descripcion.$error.required}">
-            </div>
+                <input ng-model="obj.descripcion"  
+                       type="text" 
+                       id="descripcion" 
+                       class="form-control" 
+                       name="descripcion" 
+                       size="15" 
+                       placeholder="descripcion" 
+                       minlength="3"                       
+                       maxlength="200"
+                       required>
             <span ng-show="!outerForm.$pristine && outerForm.descripcion.$error.required">El campo descripcion es obligatorio</span>
+            <span class="help-block" ng-show="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.minlength">El campo descripcion debe tener al menos 3 caracteres</span>
+            <span class="help-block" ng-show="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.maxlength">El campo descripcion debe tener como máximo 200 caracteres</span>
         </div>
-        
-        
-         <div id="emision-group" class="form-group">
+        </div>
+        <!--
+         <div id="emision-group" class="form-group"
+             ng-class="{'has-error': (outerForm.emision.$error.required
+                                 || outerForm.emision.$error.minlength
+                                 || outerForm.emision.$error.validatemax
+                                 || outerForm.emision.$error.numbersOnly)
+                                 || outerForm.emision.$error.pattern
+                                 && !outerForm.emision.$pristine}">
             <label class="col-sm-2 control-label" for="emision">Emisión:</label>
-            <div class="control col-sm-8">
-                <input ng-model="obj.emision" required type="text" id="emision" 
-                       class="form-control" name="emision" size="15" placeholder="emision"
-                       ng-class="{error:!outerForm.$pristine && outerForm.emision.$error.required}">
+            <div class="control col-sm-3">
+                <input type="text" 
+                       ng-model="obj.emision"                     
+                       id="emision" 
+                       class="form-control" 
+                       name="emision" 
+                       size="8" 
+                       placeholder="emision"
+                       ng-pattern="/^\d+$/"
+                       numbersOnly
+                       minlength="8"
+                       maxlength="8"
+                       required>
+                <span class="help-block" ng-show="!outerForm.emision.$pristine && outerForm.emision.$error.required">El campo emisión es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.emision.$pristine && outerForm.emision.$error.pattern">El campo emisión debe ser un número entero</span>                
+                <span class="help-block" ng-show="!outerForm.emision.$pristine && outerForm.emision.$error.minlength">El campo emisión debe ser un número mínimo de 9 cifras</span>
             </div>
-            <span ng-show="!outerForm.$pristine && outerForm.emision.$error.required">El campo emision es obligatorio</span>
+        </div>
+        -->
+         <div id="periodo-group" class="form-group"
+             ng-class="{'has-error': (outerForm.periodo.$error.required || outerForm.periodo.$error.minlength)  && !outerForm.periodo.$pristine}">
+            <label class="col-sm-2 control-label" for="periodo">Periodo</label>
+            <div class="control col-sm-8">
+                <input ng-model="obj.periodo"  
+                       type="text" 
+                       id="periodo" 
+                       class="form-control" 
+                       name="periodo" 
+                       size="15"  
+                       placeholder="periodo" 
+                       minlength="6"
+                       maxlength="200"
+                       required> 
+            <span ng-show="!outerForm.$pristine && outerForm.periodo.$error.required">El campo periodo es obligatorio</span>
+            <span class="help-block" ng-show="!outerForm.periodo.$pristine && outerForm.periodo.$error.minlength">El campo periodo debe tener al menos 6 caracteres</span>
+            <span class="help-block" ng-show="!outerForm.periodo.$pristine && outerForm.periodo.$error.maxlength">El campo periodo debe tener como máximo 200 caracteres</span>
+        </div>
         </div>
         
-           <div id="periodo-group" class="form-group">
-            <label class="col-sm-2 control-label" for="periodo">Periodo:</label>
-            <div class="control col-sm-8">
-                <input ng-model="obj.periodo" required type="text" id="periodo" 
-                       class="form-control" name="periodo" size="15" placeholder="periodo"
-                       ng-class="{error:!outerForm.$pristine && outerForm.periodo.$error.required}">
-            </div>
-            <span ng-show="!outerForm.$pristine && outerForm.periodo.$error.required">El campo periodo es obligatorio</span>
-        </div>
-
-
- 
-
         <div class="control-group text-right">
             <div class="controls">
                 <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>

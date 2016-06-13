@@ -22,20 +22,14 @@ public class EmpresaBean implements GenericBean {
     private String nombre = "";
     @Expose
     private String cif = "";
-      @Expose
+       @Expose
     private Date alta = new Date();
     @Expose
     private Date cambio = new Date();
-    
     @Expose
     private String contacto = "";
     @Expose
     private Integer telefono = 0;
-
-    @Expose(serialize = false)
-    private Integer id_usuario = 0;
-    @Expose(deserialize = false)
-    private UsuarioBean obj_usuario = null;
 
     public EmpresaBean() {
         this.id = 0;
@@ -51,6 +45,22 @@ public class EmpresaBean implements GenericBean {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Date getAlta() {
+        return alta;
+    }
+
+    public void setAlta(Date alta) {
+        this.alta = alta;
+    }
+
+    public Date getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Date cambio) {
+        this.cambio = cambio;
     }
 
    
@@ -72,21 +82,6 @@ public class EmpresaBean implements GenericBean {
         this.cif = cif;
     }
 
-    public Date getAlta() {
-        return alta;
-    }
-
-    public void setAlta(Date alta) {
-        this.alta = alta;
-    }
-
-    public Date getCambio() {
-        return cambio;
-    }
-
-    public void setCambio(Date cambio) {
-        this.cambio = cambio;
-    }
 
     public String getContacto() {
         return contacto;
@@ -104,21 +99,6 @@ public class EmpresaBean implements GenericBean {
         this.telefono = telefono;
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-
-    public UsuarioBean getObj_usuario() {
-        return obj_usuario;
-    }
-
-    public void setObj_usuario(UsuarioBean obj_usuario) {
-        this.obj_usuario = obj_usuario;
-    }
 
     
     public String toJson(Boolean expand) {
@@ -126,19 +106,10 @@ public class EmpresaBean implements GenericBean {
         strJson += "id:" + id + ",";
         strJson += "nombre:" + EncodingUtilHelper.quotate(nombre) + ",";
         strJson += "cif:" + EncodingUtilHelper.quotate(cif) + ",";
-//        strJson += "alta:" + alta + ",";
-//        strJson += "cambio:" + cambio + ",";
+        strJson += "alta:" + alta + ",";
+        strJson += "cambio:" + cambio + ",";
         strJson += "contacto:" + contacto + ",";
-        strJson += "telefono:" + telefono + ",";
-        
-
-        if (expand) {
-            strJson += "obj_usuario:" + obj_usuario.toJson(false) + ",";
-
-        } else {
-            strJson += "id_usuario:" + id_usuario + ",";
-
-        }
+        strJson += "telefono:" + telefono;
         strJson += "}";
         return strJson;
     }
@@ -152,8 +123,7 @@ public class EmpresaBean implements GenericBean {
         strColumns += "alta,";
         strColumns += "cambio,";
         strColumns += "contacto,";
-        strColumns += "telefono,";
-        strColumns += "id_usuario";
+        strColumns += "telefono";
 
         return strColumns;
     }
@@ -167,10 +137,7 @@ public class EmpresaBean implements GenericBean {
         strColumns += EncodingUtilHelper.stringifyAndQuotate(alta) + ",";
         strColumns += EncodingUtilHelper.stringifyAndQuotate(cambio) + ",";
         strColumns += EncodingUtilHelper.quotate(contacto) + ",";
-        strColumns += telefono + ",";
-        strColumns += id_usuario;
-        
-        
+        strColumns += telefono;
 
         return strColumns;
     }
@@ -185,8 +152,7 @@ public class EmpresaBean implements GenericBean {
         strPairs += "alta=" + EncodingUtilHelper.quotate(format.format(alta)) + ",";
         strPairs += "cambio=" + EncodingUtilHelper.quotate(format.format(cambio)) + ",";
         strPairs += "contacto=" + EncodingUtilHelper.quotate(contacto) + ",";
-        strPairs += "telefono=" + telefono + ",";
-        strPairs += "id_usuario=" + id_usuario;
+        strPairs += "telefono=" + telefono;
 
         return strPairs;
     }
@@ -196,19 +162,10 @@ public class EmpresaBean implements GenericBean {
         this.setId(oResultSet.getInt("id"));
         this.setNombre(oResultSet.getString("nombre"));
         this.setCif(oResultSet.getString("cif"));
-       this.setAlta(oResultSet.getDate("alta"));
+        this.setAlta(oResultSet.getDate("alta"));
        this.setCambio(oResultSet.getDate("cambio"));
         this.setContacto(oResultSet.getString("contacto"));
         this.setTelefono(oResultSet.getInt("telefono"));
-       if (expand > 0) {
-            UsuarioBean oUsuarioBean = new UsuarioBean();
-            UsuarioDao oUsuarioDao = new UsuarioDao(pooledConnection);
-            oUsuarioBean.setId(oResultSet.getInt("id_usuario"));
-            oUsuarioBean = oUsuarioDao.get(oUsuarioBean, expand - 1);
-            this.setObj_usuario(oUsuarioBean);
-        } else {
-            this.setId_usuario(oResultSet.getInt("id_usuario"));
-        }
        
       
         return this;

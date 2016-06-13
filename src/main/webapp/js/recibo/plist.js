@@ -41,43 +41,22 @@ moduloRecibo.controller('ReciboPListController', ['$scope', '$routeParams', 'ser
         $scope.visibles.periodo = true;
         
 
-
-
-
         $scope.ob = "recibo";
         $scope.op = "plist";
-        $scope.title = "Listado de recibos";
+        $scope.title = "Listado de emisión de recibos";
         $scope.icon = "fa-file-text-o";
         $scope.neighbourhood = 2;
 
-        if (!$routeParams.page) {
+      if (!$routeParams.page) {
             $routeParams.page = 1;
         }
 
         if (!$routeParams.rpp) {
-            $routeParams.rpp = 10;
+            $routeParams.rpp =5;
         }
 
         $scope.numpage = $routeParams.page;
         $scope.rpp = $routeParams.rpp;
-
-
-
-
-
-        //$scope.rppPad = serverService.getNrppBar($scope.ob, $scope.op, $scope.numpage, $scope.rpp);
-
-//        $scope.order = $routeParams.order;
-//        $scope.ordervalue = $routeParams.value;
-//
-//        $scope.filter = $routeParams.filter;
-//        $scope.filteroperator = $routeParams.filteroperator;
-//        $scope.filtervalue = $routeParams.filtervalue;
-//
-//        $scope.systemfilter = $routeParams.systemfilter;
-//        $scope.systemfilteroperator = $routeParams.systemfilteroperator;
-//        $scope.systemfiltervalue = $routeParams.systemfiltervalue;
-
 
         $scope.order = "";
         $scope.ordervalue = "";
@@ -91,9 +70,6 @@ moduloRecibo.controller('ReciboPListController', ['$scope', '$routeParams', 'ser
         $scope.paramsWithoutOrder = "";
         $scope.paramsWithoutFilter = "";
         $scope.paramsWithoutSystemFilter = "";
-
-
-
 
         if ($routeParams.order && $routeParams.ordervalue) {
             $scope.order = $routeParams.order;
@@ -125,9 +101,6 @@ moduloRecibo.controller('ReciboPListController', ['$scope', '$routeParams', 'ser
         }
 
         $scope.params = ($scope.orderParams + $scope.filterParams + $scope.systemFilterParams);
-        //$scope.paramsWithoutOrder = $scope.paramsWithoutOrder.replace('&', '?');
-        //$scope.paramsWithoutFilter = $scope.paramsWithoutFilter.replace('&', '?');
-        //$scope.paramsWithoutSystemFilter = $scope.paramsWithoutSystemFilter.replace('&', '?');
         $scope.params = $scope.params.replace('&', '?');
 
         serverService.getDataFromPromise(serverService.promise_getSome($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams, $scope.systemFilterParams)).then(function (data) {
@@ -143,20 +116,6 @@ moduloRecibo.controller('ReciboPListController', ['$scope', '$routeParams', 'ser
                 $scope.status = "";
             }
         });
-
-
-//        $scope.pages = serverService.getPages($scope.ob, $scope.rpp, null, null, null, null, null, null).then(function (datos5) {
-//            $scope.pages = data['data'];
-//            if (parseInt($scope.page) > parseInt($scope.pages))
-//                $scope.page = $scope.pages;
-//            //$location.path( "#/clientes/" +$scope.pages + "/" + $scope.pages);
-//        });
-
-
-//        $scope.$watch('pages', function () {
-//            $scope.$broadcast('myApp.construirBotoneraPaginas');
-//        }, true)
-//
 
         $scope.getRangeArray = function (lowEnd, highEnd) {
             var rangeArray = [];
@@ -174,7 +133,6 @@ moduloRecibo.controller('ReciboPListController', ['$scope', '$routeParams', 'ser
 
         $scope.dofilter = function () {
             if ($scope.filter != "" && $scope.filteroperator != "" && $scope.filtervalue != "") {
-                //console.log('#/' + $scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp + '?filter=' + $scope.filter + '&filteroperator=' + $scope.filteroperator + '&filtervalue=' + $scope.filtervalue + $scope.paramsWithoutFilter);
                 if ($routeParams.order && $routeParams.ordervalue) {
                     if ($routeParams.systemfilter && $routeParams.systemfilteroperator) {
                         $location.path($scope.ob + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filter).search('filteroperator', $scope.filteroperator).search('filtervalue', $scope.filtervalue).search('order', $routeParams.order).search('ordervalue', $routeParams.ordervalue).search('systemfilter', $routeParams.systemfilter).search('systemfilteroperator', $routeParams.systemfilteroperator).search('systemfiltervalue', $routeParams.systemfiltervalue);

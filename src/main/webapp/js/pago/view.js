@@ -37,7 +37,7 @@ moduloPago.controller('PagoViewController', ['$scope', '$routeParams', 'serverSe
         $scope.icon = "fa-credit-card";
         $scope.ob = 'pago';
         $scope.id = $routeParams.id;
-        serverService.getDataFromPromise(serverService.promise_getpagosfiltradoafiliado($scope.ob, $scope.id)).then(function (data) {
+        serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });
         $scope.close = function () {

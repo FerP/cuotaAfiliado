@@ -44,7 +44,7 @@ moduloMunicipio.controller('MunicipioViewController', ['$scope', '$routeParams',
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/municipio/view');
+            $location.path('/municipio/plist');
         };
         $scope.back = function () {
             window.history.back();

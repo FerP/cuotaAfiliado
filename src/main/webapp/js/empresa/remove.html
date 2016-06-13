@@ -44,15 +44,7 @@ THE SOFTWARE.
                         <tr><td>contacto</td><td>{{bean.contacto}}</td></tr> 
                         <tr><td>teléfono</td><td>{{bean.telefono}}</td></tr> 
                        
-                        <tr>
-                            <td>usuario</td>
-                            <td>
-                                <a href="#/usuario/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.login}}</a>
-                            </td>
-                        </tr> 
-                        <tr>
-                           
-                        </tr> 
+                      
                          
                     </tbody>
                 </table>  
@@ -66,7 +58,7 @@ THE SOFTWARE.
                 <br>
                 <h2  ng-show="result.message == 0" class="alert alert-success">No se ha podido eliminar el registro</h2>
                 <h2  ng-show="result.message == 1" class="alert alert-success">Se ha eliminado el registro</h2>
-                <a class="btn btn-default" ng-click="back()">Volver</a>
+                <a class="btn btn-default" href="#/empresa/plist/10">Volver al listado de empresas</a>
             </div>
             <div ng-show="result.status && !result.status == 200">
                 <br>

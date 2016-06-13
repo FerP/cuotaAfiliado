@@ -76,8 +76,7 @@ moduloProvincia.controller('ProvinciaPListController', ['$scope', '$routeParams'
 //        $scope.systemfilteroperator = $routeParams.systemfilteroperator;
 //        $scope.systemfiltervalue = $routeParams.systemfiltervalue;
 
-
-        $scope.order = "";
+     $scope.order = "";
         $scope.ordervalue = "";
         $scope.filter = "id";
         $scope.filteroperator = "like";

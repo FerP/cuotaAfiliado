@@ -37,7 +37,9 @@ moduloSector.controller('SectorPListController', ['$scope', '$routeParams', 'ser
         $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.nombre = true;
-        
+        $scope.visibles.cif= true;
+        $scope.visibles.contacto = true;
+        $scope.visibles.telefono = true;
 
 
 
@@ -53,7 +55,7 @@ moduloSector.controller('SectorPListController', ['$scope', '$routeParams', 'ser
         }
 
         if (!$routeParams.rpp) {
-            $routeParams.rpp = 10;
+            $routeParams.rpp = 5;
         }
 
         $scope.numpage = $routeParams.page;

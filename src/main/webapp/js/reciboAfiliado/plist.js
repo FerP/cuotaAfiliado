@@ -31,31 +31,34 @@
 
 'use strict';
 
-moduloPagoAfiliado.controller('PagoAfiliadoPListController', ['$scope', '$routeParams', 'serverService', '$location',
+moduloReciboAfiliado.controller('ReciboAfiliadoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         
         $scope.visibles={};
         $scope.visibles.id = true;
+        $scope.visibles.dni = true;
         $scope.visibles.nombre = true;
-        $scope.visibles.apellido1 = true;
+        $scope.visibles.apellido1= true;
         $scope.visibles.apellido2 = true;
-        $scope.visibles.tipocuota = true;
+        $scope.visibles.descripcion = true;
+        $scope.visibles.id_afiliado= true;
+        $scope.visibles.id_recibo= true;
        
 
 
-        $scope.ob = "pagoAfiliado";
+        $scope.ob = "reciboAfiliado";
         $scope.op = "plist";
-        $scope.title = "Listado de Pagos afiliados";
+        $scope.title = "Listado de afiliados con esta emisión";
         $scope.icon = "fa-credit-card";
         $scope.neighbourhood = 2;
-        $scope.id = $routeParams.id_afiliado;
+        $scope.id = $routeParams.id_recibo;
 
         if (!$routeParams.page) {
             $routeParams.page = 1;
         }
 
         if (!$routeParams.rpp) {
-            $routeParams.rpp = 10;
+            $routeParams.rpp = 5;
         }
 
         $scope.numpage = $routeParams.page;
@@ -106,7 +109,7 @@ moduloPagoAfiliado.controller('PagoAfiliadoPListController', ['$scope', '$routeP
         $scope.params = ($scope.orderParams + $scope.filterParams + $scope.systemFilterParams);
         $scope.params = $scope.params.replace('&', '?');
 
-        serverService.getDataFromPromise(serverService.promise_getSome($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams, $scope.systemFilterParams)).then(function (data) {
+                serverService.getDataFromPromise(serverService.promise_getSomeReciboAfiliado($scope.ob, $scope.rpp, $scope.numpage, $scope.id, $scope.filterParams, $scope.orderParams, $scope.systemFilterParams)).then(function (data) {
             if (data.status != 200) {
                 $scope.status = "Error en la recepción de datos del servidor";
             } else {
@@ -115,8 +118,8 @@ moduloPagoAfiliado.controller('PagoAfiliadoPListController', ['$scope', '$routeP
                     $scope.numpage = $scope.pages;
 
                 $scope.page = data.message.page.message;
-                $scope.registers = data.message.registers.message;
-                $scope.status = "";
+                //$scope.registers = data.message.registers.message;
+               // $scope.status = "";
             }
         });
 

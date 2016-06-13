@@ -25,29 +25,24 @@
  * THE SOFTWARE.
  * 
  */
-
 'use strict';
 
-moduloUsuario.controller('usuarioRemoveController', ['$scope', '$routeParams', 'serverService',
+
+
+
+
+moduloReciboAfiliado.controller('ReciboAfiliadoViewController', ['$scope', '$routeParams', 'serverService',
     function ($scope, $routeParams, serverService) {
-        $scope.result = "";
+        $scope.title = "Vista de Emisiones";
+        $scope.icon = "fa-money";
+        $scope.ob = 'reciboAfiliado';
+        $scope.id = $routeParams.id;
+        serverService.getDataFromPromise(serverService.promise_getafiliadosfiltradorecibo($scope.ob, $scope.id)).then(function (data) {
+            $scope.bean = data.message;
+        });
+        
+      
         $scope.back = function () {
             window.history.back();
         };
-        $scope.ob = 'usuario';
-        $scope.id = $routeParams.id;
-        $scope.title = "Borrado de un tipo de usuario";
-        $scope.icon = "fa-file-text-o";
-        serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
-            $scope.bean = data.message;
-        });
-
-
-
-        $scope.remove = function () {
-            serverService.getDataFromPromise(serverService.promise_removeOne($scope.ob, $scope.id)).then(function (data) {
-                $scope.result = data;
-            });
-        }
-        ;
     }]);

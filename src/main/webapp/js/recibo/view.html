@@ -37,17 +37,17 @@ THE SOFTWARE.
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                    <tr><td>descripcion</td><td>{{bean.descripcion}}</td></tr>
-                    <tr><td>emision</td><td>{{bean.emision}}</td></tr>
-                    <tr><td>periodo</td><td>{{bean.periodo}}</td></tr>
+                    <tr><td>Id</td><td>{{bean.id}}</td></tr>       
+                    <tr><td>Descripción</td><td>{{bean.descripcion}}</td></tr>
+                    <!--<tr><td>Emisión</td><td>{{bean.emision}}</td></tr>-->
+                    <tr><td>Periodo</td><td>{{bean.periodo}}</td></tr>
                     
                </tbody>
             </table>  
             <div class="text-right" > 
                 <a class="btn btn-primary" href="#/recibo/edit/{{bean.id}}">Editar</a>
                 <a class="btn btn-danger" href="#/recibo/remove/{{bean.id}}">Borrar</a>
-                   <a class="btn btn-default" ng-click="plist()">Ir al listado de cuotaes</a>
+                   <a class="btn btn-default" ng-click="plist()">Ir al listado de emisiones</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>

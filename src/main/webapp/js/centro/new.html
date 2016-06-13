@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-openAUSIAS: The stunning micro-library that helps you to develop easily 
-            AJAX web applications by using Java and jQuery
-openAUSIAS is distributed under the MIT License (MIT)
-Sources at https://github.com/rafaelaznar/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
--->
 <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
     <form name="outerForm" class="form-horizontal" ng-show="result == null">
@@ -38,37 +11,103 @@ THE SOFTWARE.
         </div>
 
 
-        <div id="nombre-group" class="form-group">
+        <div id="nombre-group" class="form-group"
+             ng-class="{'has-error': (outerForm.nombre.$error.minlength || outerForm.nombre.$error.required) && !outerForm.nombre.$pristine}">
             <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
             <div class="control col-sm-8">
-                <input ng-model="obj.nombre" type="text" id="nombre" class="form-control" name="nombre" size="15" placeholder="nombre">
+                <input ng-model="obj.nombre"  
+                       type="text" 
+                       id="nombre" 
+                       class="form-control" 
+                       name="nombre" 
+                       size="15" 
+                       placeholder="nombre" 
+                       minlength="3"                       
+                       maxlength="200"
+                       required>
+                <span ng-show="!outerForm.$pristine && outerForm.nombre.$error.required">El campo nombre es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.nombre.$pristine && outerForm.nombre.$error.minlength">El campo nombre debe tener al menos 3 caracteres</span>
+                <span class="help-block" ng-show="!outerForm.nombre.$pristine && outerForm.nombre.$error.maxlength">El campo nombre debe tener como máximo 200 caracteres</span>
             </div>
         </div>
 
 
-        <div id="direccion-group" class="form-group">
-            <label class="col-sm-2 control-label" for="direccion">Dirección:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.direccion" type="text" id="direccion" class="form-control" name="direccion" size="15" placeholder="direccion">
-            </div>
-        </div>
-        
-        <div id="cp-group" class="form-group">
-            <label class="col-sm-2 control-label" for="cp">CP:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.cp" type="text" id="cp" class="form-control" name="direccion" size="15" placeholder="cp">
+        <div id="direccion-group" class="form-group"
+             ng-class="{'has-error': (outerForm.direccion.$error.required || outerForm.direccion.$error.minlength) && !outerForm.direccion.$pristine}">
+            <label class="col-sm-2 control-label" for="direccion">Dirección</label>
+            <div class="control col-sm-8">
+                <input ng-model="obj.direccion"  
+                       type="text" 
+                       id="direccion" 
+                       class="form-control" 
+                       name="direccion" 
+                       size="15"  
+                       placeholder="direccion" 
+                       minlength="5"
+                       maxlength="200"
+                       required>   
+                <span ng-show="!outerForm.$pristine && outerForm.nombre.$error.required">El campo dirección es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.direccion.$pristine && outerForm.direccion.$error.minlength">El campo dirección debe tener al menos 15 caracteres</span>
+                <span class="help-block" ng-show="!outerForm.direccion.$pristine && outerForm.direccion.$error.maxlength">El campo dirección debe tener como máximo 200 caracteres</span>
             </div>
         </div>
 
-           <div id="telefono-group" class="form-group">
+        <div id="cp-group" class="form-group"
+             ng-class="{'has-error': (outerForm.cp.$error.required
+                                 || outerForm.cp.$error.minlength
+                                 || outerForm.cp.$error.maxlength
+                                 || outerForm.cp.$error.numbersOnly)
+                                 || outerForm.cp.$error.pattern
+                                 && !outerForm.cp.$pristine}">
+            <label class="col-sm-2 control-label" for="cp">Código Postal:</label>
+            <div class="control col-sm-3">
+                <input type="text" 
+                       ng-model="obj.cp"                     
+                       id="cp" 
+                       class="form-control" 
+                       name="cp" 
+                       size="5" 
+                       placeholder="cp"
+                       ng-pattern="/^\d+$/"
+                       numbersOnly
+                       minlength="5"
+                       maxlength="5"
+                       required>
+                <span class="help-block" ng-show="!outerForm.cp.$pristine && outerForm.cp.$error.required">El campo Código Postal es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.cp.$pristine && outerForm.cp.$error.pattern">El campo Código Postal debe ser un número entero</span>                
+                <span class="help-block" ng-show="!outerForm.cp.$pristine && outerForm.cp.$error.minlength">El campo Código Postal debe ser un número mínimo de 5 cifras</span>
+            </div>
+        </div>
+
+        <div id="telefono-group" class="form-group"     
+             ng-class="{'has-error': (outerForm.telefono.$error.required
+                                 || outerForm.telefono.$error.minlength
+                                 || outerForm.telefono.$error.maxlength
+                                 || outerForm.telefono.$error.numbersOnly)
+                                 || outerForm.telefono.$error.pattern
+                                 && !outerForm.telefono.$pristine}">
             <label class="col-sm-2 control-label" for="telefono">Teléfono:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.telefono" type="text" id="cp" class="form-control" name="telefono" size="15" placeholder="telefono">
+            <div class="control col-sm-3">
+                <input type="text" 
+                       ng-model="obj.telefono"                     
+                       id="telefono" 
+                       class="form-control" 
+                       name="telefono" 
+                       size="9" 
+                       placeholder="telefono"
+                       ng-pattern="/^\d+$/"
+                       numbersOnly
+                       minlength="9"
+                       maxlength="9"
+                       required>
+                <span class="help-block" ng-show="!outerForm.telefono.$pristine && outerForm.telefono.$error.required">El campo teléfono es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.telefono.$pristine && outerForm.telefono.$error.pattern">El campo teléfono debe ser un número entero</span>                
+                <span class="help-block" ng-show="!outerForm.telefono.$pristine && outerForm.telefono.$error.minlength">El campo teléfono debe ser un número mínimo de 9 cifras</span>
             </div>
-        </div> 
+        </div>
 
-         <div id="empresa-group" class="form-group">
-            <label class="col-sm-2 control-label" for="obj_empresa">empresa:</label>
+        <div id="empresa-group" class="form-group">
+            <label class="col-sm-2 control-label" for="obj_empresa">Empresa:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_empresa_group">
                     <span class="input-group-addon" id="obj_empresa_button">
@@ -76,7 +115,7 @@ THE SOFTWARE.
                         </span>
                     </span>
                     <input ng-model="obj.obj_empresa.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_empresa" name="obj_empresa" type="text" size="5" maxlength="5">
-                                        <span class="input-group-addon">
+                    <span class="input-group-addon">
                         <a href="#/empresa/view/{{obj.obj_empresa.id}}">
                             <span>{{obj.obj_empresa.nombre}}</span>     
                         </a>     
@@ -84,9 +123,9 @@ THE SOFTWARE.
                 </div>
             </div>            
         </div>      
-        
-         <div id="sector-group" class="form-group">
-            <label class="col-sm-2 control-label" for="obj_sector">sector:</label>
+
+        <div id="sector-group" class="form-group">
+            <label class="col-sm-2 control-label" for="obj_sector">Sector:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_sector_group">
                     <span class="input-group-addon" id="obj_sector_button">
@@ -94,7 +133,7 @@ THE SOFTWARE.
                         </span>
                     </span>
                     <input ng-model="obj.obj_sector.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_sector" name="obj_sector" type="text" size="5" maxlength="5">
-                                        <span class="input-group-addon">
+                    <span class="input-group-addon">
                         <a href="#/sector/view/{{obj.obj_sector.id}}">
                             <span>{{obj.obj_sector.nombre}}</span>     
                         </a>     
@@ -102,8 +141,8 @@ THE SOFTWARE.
                 </div>
             </div>            
         </div>  
-         <div id="municipio-group" class="form-group">
-            <label class="col-sm-2 control-label" for="obj_municipio">municipio:</label>
+        <div id="municipio-group" class="form-group">
+            <label class="col-sm-2 control-label" for="obj_municipio">Municipio:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_municipio_group">
                     <span class="input-group-addon" id="obj_municipio_button">
@@ -111,7 +150,7 @@ THE SOFTWARE.
                         </span>
                     </span>
                     <input ng-model="obj.obj_municipio.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_municipio" name="obj_municipio" type="text" size="20" maxlength="20">
-                                        <span class="input-group-addon">
+                    <span class="input-group-addon">
                         <a href="#/municipio/view/{{obj.obj_municipio.id}}">
                             <span>{{obj.obj_municipio.nombre}}</span>     
                         </a>     
@@ -119,10 +158,10 @@ THE SOFTWARE.
                 </div>
             </div>            
         </div>          
-        
+
         <div class="control-group text-right">
             <div class="controls">
-                <a class="btn btn-primary" ng-click="save()">Guardar</a>
+                <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
                 <a class="btn btn-default" ng-click="plist()">Ir al listado de centros</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 11-02-2016 a las 17:17:24
+-- Tiempo de generación: 25-02-2016 a las 01:02:10
 -- Versión del servidor: 5.6.26
--- Versión de PHP: 5.5.30
+-- Versión de PHP: 5.5.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,28 +28,29 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `afiliado` (
   `id` int(9) NOT NULL,
+  `dni` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `apellido1` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `apellido2` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fnac` date DEFAULT NULL,
   `falta` date DEFAULT NULL,
-  `movil` int(9) DEFAULT NULL,
+  `telefono` int(12) DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_empresa` int(10) DEFAULT NULL,
   `id_centro` int(10) DEFAULT NULL,
   `id_cuota` int(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `afiliado`
 --
 
-INSERT INTO `afiliado` (`id`, `nombre`, `apellido1`, `apellido2`, `fnac`, `falta`, `movil`, `email`, `id_empresa`, `id_centro`, `id_cuota`) VALUES
-(1, 'Fernando ', 'Putadas', 'Cantadas', '2016-02-03', '2015-06-15', 654854555, 'f@gmail.com', 1, 1, 1),
-(2, 'Lucas', 'Pegasus', 'Siopara', '1991-02-02', '2015-03-22', 755777415, 'pegas@hotmail.com', 2, 2, 1),
-(3, 'Carlos', 'García', 'Gómez', '2016-02-03', '2016-02-03', 454444755, 'sinton_81|@hotmail.com', 1, 2, 2),
-(4, 'Raúl', 'Erre', 'zeta', '2016-02-13', '2016-02-12', 45656656, 'f@gmail.com', 2, 1, 3),
-(5, 'Iván', 'Gómez', 'Gómez', '2016-02-04', '2016-02-04', 4548444, 'gsfg@hotmail.com', 3, 2, 3);
+INSERT INTO `afiliado` (`id`, `dni`, `nombre`, `apellido1`, `apellido2`, `fnac`, `falta`, `telefono`, `email`, `id_empresa`, `id_centro`, `id_cuota`) VALUES
+(2, '12345678B', 'Antonio', 'Pegasus', 'Siopara', '1991-02-02', '2015-03-22', 755777415, 'pegas@hotmail.com', 2, 2, 1),
+(3, '12345678C', 'Carlos', 'García', 'Gómez', '2016-02-03', '2016-02-03', 454444755, 'sinton_81|@hotmail.com', 1, 2, 2),
+(4, '12345678D', 'Raul', 'Erre', 'zeta', '1978-05-11', '2016-02-12', 456566563, 'f@gmail.com', 5, 1, 1),
+(5, '44343432P', 'Antonio', 'Recheui', 'Grande', '1976-02-13', '2016-02-25', 965556556, 'fasfdsf@gmail.com', 1, 3, 4),
+(6, '09090545T', 'Palomo', 'Muy', 'Cojo', '1982-05-19', '2016-02-26', 965656565, 'f@gmail.com', 2, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `centro` (
   `id_sector` int(2) DEFAULT NULL,
   `id_empresa` int(11) DEFAULT NULL,
   `telefono` int(9) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `centro`
@@ -76,9 +77,7 @@ INSERT INTO `centro` (`id`, `nombre`, `direccion`, `cp`, `id_municipio`, `id_sec
 (1, 'Malilla', 'calle Malilla 28', 46036, 1, 3, 3, 987544544),
 (2, 'Manises', 'Manises 33', 46111, 1, 3, 2, 777888444),
 (3, 'Quart', 'Quart 333', 78454, 1, 3, 3, 111444888),
-(4, 'Serrano', 'serrano 22', 12444, 3, 1, 1, 12),
-(5, 'fonteta', 'fonteta 145', 33333, 2, 1, 3, 3535432),
-(6, 'Ana Marx', 'Ana Marx 45', 3333, 3, 3, 1, 33334566);
+(4, 'Serrano', 'serrano 22', 12444, 3, 1, 1, 965656555);
 
 -- --------------------------------------------------------
 
@@ -89,7 +88,7 @@ INSERT INTO `centro` (`id`, `nombre`, `direccion`, `cp`, `id_municipio`, `id_sec
 CREATE TABLE IF NOT EXISTS `comarca` (
   `id` int(3) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `comarca`
@@ -97,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `comarca` (
 
 INSERT INTO `comarca` (`id`, `nombre`) VALUES
 (1, 'Rincón Ademuz'),
-(2, 'Manises'),
+(2, 'Manises1'),
 (3, 'La Safor');
 
 -- --------------------------------------------------------
@@ -117,10 +116,10 @@ CREATE TABLE IF NOT EXISTS `cuota` (
 --
 
 INSERT INTO `cuota` (`id`, `tipocuota`, `importe`) VALUES
-(1, 'Cuota ordinaria', 11.70),
-(2, 'Cuota reducida', 7.75),
-(3, 'Cuotas especiales jubilados', 5.50),
-(4, 'Cuota desempleado', 3.30);
+(1, 'Cuota ordinaria', 30.50),
+(2, 'Cuota reducida', 15.50),
+(3, 'Cuotas especiales jubilados', 15.00),
+(4, 'Cuota desempleado', 20.00);
 
 -- --------------------------------------------------------
 
@@ -135,18 +134,22 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `alta` date DEFAULT NULL,
   `cambio` date DEFAULT NULL,
   `contacto` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `telefono` int(9) DEFAULT NULL,
-  `id_usuario` int(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `telefono` int(9) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`id`, `nombre`, `cif`, `alta`, `cambio`, `contacto`, `telefono`, `id_usuario`) VALUES
-(1, 'Mercadona', '464647777', '2016-01-08', '2016-02-18', 'Paquillo', 444888444, 1),
-(2, 'Ford', '45343', '2016-02-02', '2016-02-17', 'Gregorio', 3333, 1),
-(3, 'Panasonic', '2222', '2016-02-02', '2016-02-11', '333333', 333333, 1);
+INSERT INTO `empresa` (`id`, `nombre`, `cif`, `alta`, `cambio`, `contacto`, `telefono`) VALUES
+(1, 'Mercadona', 'E46464777', '2016-02-22', '2016-02-12', 'Paquillo', 444888445),
+(2, 'Ford', 'R53434544', '2016-02-22', '2016-02-06', 'Gregorio', 333333369),
+(3, 'Panasonic', 'U22226666', '2016-02-25', '2015-08-20', 'Arancha', 963556565),
+(4, 'Frudesa', '353535353', '2016-02-22', '2016-02-05', 'sdfsfdsf', 111111111),
+(5, 'Ferrasa', 'I45545454', '2016-02-25', '2016-02-10', 'Fran', 999999999),
+(6, 'Jonathan', '787877777', NULL, NULL, 'Zeta', 999999999),
+(9, 'Serrano', 'T54444444', '2016-02-22', '2015-10-13', 'Alvaro', 454545458),
+(10, 'Pescanova', 'Y44444444', '2016-02-22', '2016-02-12', 'Lucas', 968648484);
 
 -- --------------------------------------------------------
 
@@ -195,17 +198,17 @@ CREATE TABLE IF NOT EXISTS `pago` (
   `id_afiliado` int(2) DEFAULT NULL,
   `id_cuota` int(2) DEFAULT NULL,
   `id_recibo` int(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `pago`
 --
 
 INSERT INTO `pago` (`id`, `fpago`, `id_afiliado`, `id_cuota`, `id_recibo`) VALUES
-(1, '2016-02-16', 1, 1, 1),
-(2, '2016-02-08', 2, 2, 2),
-(3, '2016-02-07', 1, 2, 1),
-(4, '2016-02-17', 2, 1, 1);
+(1, '2016-02-04', 3, 1, 2),
+(2, '2016-02-03', 2, 2, 2),
+(9, '2015-02-02', 3, 3, 4),
+(10, '2016-02-19', 4, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -216,18 +219,20 @@ INSERT INTO `pago` (`id`, `fpago`, `id_afiliado`, `id_cuota`, `id_recibo`) VALUE
 CREATE TABLE IF NOT EXISTS `pagoafiliado` (
   `id` int(10) NOT NULL,
   `id_afiliado` int(2) DEFAULT NULL,
-  `id_cuota` int(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id_recibo` int(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `pagoafiliado`
 --
 
-INSERT INTO `pagoafiliado` (`id`, `id_afiliado`, `id_cuota`) VALUES
+INSERT INTO `pagoafiliado` (`id`, `id_afiliado`, `id_recibo`) VALUES
 (1, 1, 1),
-(2, 2, 2),
+(2, 2, 1),
 (3, 1, 2),
-(4, 2, 1);
+(4, 2, 2),
+(16, 4, 4),
+(17, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -238,7 +243,7 @@ INSERT INTO `pagoafiliado` (`id`, `id_afiliado`, `id_cuota`) VALUES
 CREATE TABLE IF NOT EXISTS `provincia` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `provincia`
@@ -259,15 +264,15 @@ CREATE TABLE IF NOT EXISTS `recibo` (
   `descripcion` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `emision` int(12) DEFAULT NULL,
   `periodo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `recibo`
 --
 
 INSERT INTO `recibo` (`id`, `descripcion`, `emision`, `periodo`) VALUES
-(1, 'DN Enero 2016', 100034, 'M012016'),
-(2, 'DN Febrero 2016', 100036, 'M022016');
+(2, 'DN Febrero 2016', 100036, 'M022016'),
+(4, 'DN Marzo 2016', 12222222, 'M032016');
 
 -- --------------------------------------------------------
 
@@ -405,17 +410,17 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `afiliado`
 --
 ALTER TABLE `afiliado`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `centro`
 --
 ALTER TABLE `centro`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `comarca`
 --
 ALTER TABLE `comarca`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `cuota`
 --
@@ -425,7 +430,7 @@ ALTER TABLE `cuota`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `liquidacion`
 --
@@ -440,22 +445,22 @@ ALTER TABLE `municipio`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `pagoafiliado`
 --
 ALTER TABLE `pagoafiliado`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `provincia`
 --
 ALTER TABLE `provincia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `recibo`
 --
 ALTER TABLE `recibo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `sector`
 --

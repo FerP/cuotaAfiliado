@@ -67,8 +67,18 @@ angular.module('Services', [])
 //                    });
                 },
                 //pago filtrado afiliado
-               promise_getpagosfiltradoafiliado: function (strClass, id) {
+                promise_getpagosfiltradoafiliado: function (strClass, id) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getpagosfiltradoafiliado&id=' + id, 'GET', '');
+                },
+                promise_getSomePagoAfiliado: function (strClass, rpp, page, id_afiliado, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomepagoafiliado' + '&rpp=' + rpp + '&page=' + page + '&id_afiliado=' + id_afiliado + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getafiliadosfiltradorecibo: function (strClass, id) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getafiliadosfiltradorecibo&id=' + id, 'GET', '');
+                },
+                //recibo afiliado
+                promise_getSomeReciboAfiliado: function (strClass, rpp, page, id_recibo, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomereciboafiliado' + '&rpp=' + rpp + '&page=' + page + '&id_recibo=' + id_recibo + filterParams + orderParams + systemfilterParams, 'GET', '');
                 },
                 promise_getMeta: function (strClass) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getmetainformation', 'GET', '');
@@ -94,6 +104,13 @@ angular.module('Services', [])
                 promise_setOneAfiliado: function (jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                     return $http.get(configuration.getAppUrl() + '?ob=cuotaAfiliado' + '&op=set', {params: jsonfile});
+                },
+                //Liquidación
+                promise_getLiquidacionTotal: function () {
+                    return $http.get(configuration.getAppUrl() + '?ob=liquidacion&op=getliquidaciontotal', 'GET', '');
+                },
+                promise_getliquidacionPorCuota: function (idCuota) {
+                    return $http.get(configuration.getAppUrl() + '?ob=liquidacion&op=getliquidacionporcuota&id='+idCuota, 'GET', '');
                 },
                 
                 

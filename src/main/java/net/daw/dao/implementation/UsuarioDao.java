@@ -187,7 +187,7 @@ public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
             }
             return oUsuario;
         } catch (Exception e) {
-            throw new Exception("EmpresaDao.getFromLogin: Error: " + e.getMessage());
+            throw new Exception("UsuarioDao.getFromLogin: Error: " + e.getMessage());
         }
     }
 

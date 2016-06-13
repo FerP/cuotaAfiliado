@@ -113,12 +113,19 @@ public class PagoDao implements ViewDaoInterface<PagoBean>, TableDaoInterface<Pa
     @Override
     public Integer set(PagoBean oPagoBean) throws Exception {
           Integer iResult = null;
+          Integer iResultDos = null;
         try {
             if (oPagoBean.getId() == 0) {
                 strSQL = "INSERT INTO " + strTable + " ";
                 strSQL += "(" + oPagoBean.getColumns() + ")";
                 strSQL += "VALUES(" + oPagoBean.getValues() + ")";
                 iResult = oMysql.executeInsertSQL(strSQL);
+                
+                strSQL = "INSERT INTO pagoafiliado" +  " ";
+                strSQL += "(`id`, `id_afiliado`, `id_recibo`)";
+                strSQL += "VALUES(NULL," + oPagoBean.getId_afiliado() + ","+ oPagoBean.getId_recibo()+")";
+                iResultDos = oMysql.executeInsertSQL(strSQL);
+
             } else {
                 strSQL = "UPDATE " + strTable + " ";
                 strSQL += " SET " + oPagoBean.toPairs();

@@ -33,14 +33,14 @@
 
 moduloPago.controller('PagoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
+
+        $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.fpago = true;
-        $scope.visibles.id_afiliado= true;
+        $scope.visibles.id_afiliado = true;
         $scope.visibles.id_cuota = true;
-        $scope.visibles.id_recibo= true;
-       
+        $scope.visibles.id_recibo = true;
+
 
 
         $scope.ob = "pago";
@@ -55,7 +55,7 @@ moduloPago.controller('PagoPListController', ['$scope', '$routeParams', 'serverS
         }
 
         if (!$routeParams.rpp) {
-            $routeParams.rpp = 10;
+            $routeParams.rpp = 5;
         }
 
         $scope.numpage = $routeParams.page;
@@ -148,6 +148,22 @@ moduloPago.controller('PagoPListController', ['$scope', '$routeParams', 'serverS
             }
             return false;
         };
+
+        $scope.getLiquidacion = function () {
+            serverService.getDataFromPromise(serverService.promise_getLiquidacionTotal()).then(function (data) {
+                if (data.status != 200) {
+                    $scope.liquidacion = data.total;
+                }
+            });
+        }
+        
+        $scope.getLiquidacionPorCuota = function (idCuota) {
+            serverService.getDataFromPromise(serverService.promise_getliquidacionPorCuota(idCuota)).then(function (data) {
+                if (data.status != 200) {
+                    $scope.liquidacion = data.total;
+                }
+            });
+        }
 
 
     }]);

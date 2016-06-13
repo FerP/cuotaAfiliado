@@ -50,11 +50,11 @@ public class ReciboBean implements GenericBean {
         this.emision = emision;
     }
 
-    public String getClaverecibo() {
+    public String getPeriodo() {
         return periodo;
     }
 
-    public void setClaverecibo(String periodo) {
+    public void setPeriodo(String periodo) {
         this.periodo = periodo;
     }
     
@@ -109,7 +109,7 @@ public class ReciboBean implements GenericBean {
         this.setId(oResultSet.getInt("id"));
         this.setDescripcion(oResultSet.getString("descripcion"));
         this.setEmision(oResultSet.getInt("emision"));
-        this.setClaverecibo(oResultSet.getString("periodo"));
+        this.setPeriodo(oResultSet.getString("periodo"));
         return this;
     }
 }

@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
 
-openAUSIAS: The stunning micro-library that helps you to develop easily 
-            AJAX web applications by using Java and jQuery
-openAUSIAS is distributed under the MIT License (MIT)
-Sources at https://github.com/rafaelaznar/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
--->
 <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
     <form name="outerForm" class="form-horizontal" ng-show="result == null">
@@ -38,16 +11,29 @@ THE SOFTWARE.
         </div>
 
 
-        <div id="nombre-group" class="form-group">
-            <label class="col-sm-2 control-label" for="titulo">Nombre:</label>
+        <div id="nombre-group" class="form-group"
+             ng-class="{'has-error': (outerForm.nombre.$error.minlength || outerForm.nombre.$error.required) && !outerForm.nombre.$pristine}">
+            <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
             <div class="control col-sm-8">
-                <input ng-model="obj.nombre" type="text" id="nombre" class="form-control" name="nombre" size="15" placeholder="nombre">
+                <input ng-model="obj.nombre"  
+                       type="text" 
+                       id="nombre" 
+                       class="form-control" 
+                       name="nombre" 
+                       size="15" 
+                       placeholder="nombre" 
+                       minlength="3"                       
+                       maxlength="200"
+                       required>
+                <span ng-show="!outerForm.$pristine && outerForm.nombre.$error.required">El campo nombre es obligatorio</span>
+                <span class="help-block" ng-show="!outerForm.nombre.$pristine && outerForm.nombre.$error.minlength">El campo nombre debe tener al menos 3 caracteres</span>
+                <span class="help-block" ng-show="!outerForm.nombre.$pristine && outerForm.nombre.$error.maxlength">El campo nombre debe tener como máximo 200 caracteres</span>
             </div>
         </div>
 
-        
+
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="obj_provincia">provincia:</label>
+            <label class="col-sm-2 control-label" for="obj_provincia">Provincia:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_provincia_group">
                     <span class="input-group-addon" id="obj_provincia_button">
@@ -63,10 +49,10 @@ THE SOFTWARE.
                 </div>
             </div>            
         </div>
-            
-        
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="obj_comarca">comarca:</label>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_comarca">Comarca:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_comarca_group">
                     <span class="input-group-addon" id="obj_comarca_button">
@@ -74,7 +60,7 @@ THE SOFTWARE.
                         </span>
                     </span>
                     <input ng-model="obj.obj_comarca.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_comarca" name="obj_comarca" type="text" size="5" maxlength="5">
-                                        <span class="input-group-addon">
+                    <span class="input-group-addon">
                         <a href="#/comarca/view/{{obj.obj_comarca.id}}">
                             <span>{{obj.obj_comarca.nombre}}</span>     
                         </a>     
@@ -82,29 +68,9 @@ THE SOFTWARE.
                 </div>
             </div>            
         </div>
-
-   
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-       
         <div class="control-group text-right">
             <div class="controls">
-                <a class="btn btn-primary" ng-click="save()">Guardar</a>
+                <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
                 <a class="btn btn-default" ng-click="plist()">Ir al listado de municipios</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>

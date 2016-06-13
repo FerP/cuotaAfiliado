@@ -39,15 +39,7 @@ angular.module('Directives', [])
                 }
             }
         })
-        .directive('linktipodocumento', function () {
-            return {
-                restrict: 'E',
-                template: '<a ng-show="obj.id" href="#/tipodocumento/view/{{obj.id}}">{{obj.id}}-({{obj.descripcion}})</a>',
-                scope: {
-                    obj: "=source"
-                }
-            }
-        })
+        
         .directive('linksector', function () {
             return {
                 restrict: 'E',

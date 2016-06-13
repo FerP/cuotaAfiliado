@@ -100,8 +100,8 @@ moduloPago.controller('PagoEditController', ['$scope', '$routeParams', '$locatio
 
 
        //datepickers
-        $scope.minDate = new Date(2016, 0, 1);
-        $scope.maxDate = new Date(2019, 11, 31);
+        $scope.minDate = new Date(1930, 1, 1);
+        $scope.maxDate = new Date(2019, 12, 31);
 
         //datepicker 1 (fecha de alta)
         $scope.open1 = function () {
@@ -115,20 +115,4 @@ moduloPago.controller('PagoEditController', ['$scope', '$routeParams', '$locatio
             startingDay: 1
         };
 
-        //datepicker 2 (fecha de alta)
-        /*$scope.open2 = function () {
-            $scope.popup2.opened = true;
-        };
-        $scope.popup2 = {
-            opened: false
-        };
-        $scope.dateOptions2 = {
-            formatYear: 'yyyy',
-            startingDay: 1
-        };
-*/
-
-//        $scope.disabled = function (date, mode) {
-//            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-//        };
     }]);

@@ -38,8 +38,8 @@ THE SOFTWARE.
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                        <tr><td>nombre</td><td>{{bean.nombre}}</td></tr>  
+                        <tr><td>Id</td><td>{{bean.id}}</td></tr>       
+                        <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr>  
                     </tbody>
                 </table>  
                 <div class="text-right" > 
@@ -52,7 +52,7 @@ THE SOFTWARE.
                 <br>
                 <h2  ng-show="result.message == 0" class="alert alert-success">No se ha podido eliminar el registro</h2>
                 <h2  ng-show="result.message == 1" class="alert alert-success">Se ha eliminado el registro</h2>
-                <a class="btn btn-default" ng-click="back()">Volver</a>
+                <a class="btn btn-default" href="#/provincia/plist/10">Volver al listado de provincias</a>
             </div>
             <div ng-show="result.status && !result.status == 200">
                 <br>

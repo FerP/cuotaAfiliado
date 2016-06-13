@@ -38,16 +38,29 @@ THE SOFTWARE.
         </div>
 
 
-        <div id="nombre-group" class="form-group">
+         <div id="nombre-group" class="form-group"
+             ng-class="{'has-error': (outerForm.nombre.$error.minlength || outerForm.nombre.$error.required) && !outerForm.nombre.$pristine}">
             <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
             <div class="control col-sm-8">
-                <input ng-model="obj.nombre" type="text" id="nombre" class="form-control" name="nombre" size="15" placeholder="nombre">
-            </div>
+                <input ng-model="obj.nombre"  
+                       type="text" 
+                       id="nombre" 
+                       class="form-control" 
+                       name="nombre" 
+                       size="15" 
+                       placeholder="nombre" 
+                       minlength="3"                       
+                       maxlength="200"
+                       required>
+            <span ng-show="!outerForm.$pristine && outerForm.nombre.$error.required">El campo nombre es obligatorio</span>
+            <span class="help-block" ng-show="!outerForm.nombre.$pristine && outerForm.nombre.$error.minlength">El campo nombre debe tener al menos 3 caracteres</span>
+            <span class="help-block" ng-show="!outerForm.nombre.$pristine && outerForm.nombre.$error.maxlength">El campo nombre debe tener como máximo 200 caracteres</span>
+        </div>
         </div>
         
         <div class="control-group text-right">
             <div class="controls">
-                <a class="btn btn-primary" ng-click="save()">Guardar</a>
+                <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
                 <a class="btn btn-default" ng-click="plist()">Ir al listado de sectores</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>

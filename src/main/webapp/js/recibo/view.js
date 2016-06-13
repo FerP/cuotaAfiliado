@@ -30,7 +30,7 @@
 
 moduloRecibo.controller('ReciboViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
-        $scope.title = "Vista de Recibo";
+        $scope.title = "Vista de Emisión";
         $scope.icon = "fa-file-text-o";
         $scope.ob = 'recibo';
         $scope.id = $routeParams.id;

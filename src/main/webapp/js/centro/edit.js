@@ -1,30 +1,4 @@
-/* 
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * openAUSIAS: The stunning micro-library that helps you to develop easily 
- *             AJAX web applications by using Java and jQuery
- * openAUSIAS is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- * 
- */
+
 
 'use strict';
 moduloCentro.controller('CentroEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
@@ -63,7 +37,7 @@ moduloCentro.controller('CentroEditController', ['$scope', '$routeParams', '$loc
                 $scope.result = data;
             });
         };
-        
+
         $scope.$watch('obj.obj_empresa.id', function () {
             if ($scope.obj) {
                 serverService.getDataFromPromise(serverService.promise_getOne('empresa', $scope.obj.obj_empresa.id)).then(function (data2) {
@@ -71,23 +45,23 @@ moduloCentro.controller('CentroEditController', ['$scope', '$routeParams', '$loc
                 });
             }
         });
-        
-         $scope.$watch('obj.obj_municipio.id', function () {
+
+        $scope.$watch('obj.obj_municipio.id', function () {
             if ($scope.obj) {
                 serverService.getDataFromPromise(serverService.promise_getOne('municipio', $scope.obj.obj_municipio.id)).then(function (data2) {
                     $scope.obj.obj_municipio = data2.message;
                 });
             }
         });
-        
+
         $scope.$watch('obj.obj_sector.id', function () {
             if ($scope.obj) {
                 serverService.getDataFromPromise(serverService.promise_getOne('sector', $scope.obj.obj_sector.id)).then(function (data2) {
                     $scope.obj.obj_sector = data2.message;
                 });
             }
-        });   
-        
+        });
+
         $scope.back = function () {
             window.history.back();
         };
@@ -99,7 +73,7 @@ moduloCentro.controller('CentroEditController', ['$scope', '$routeParams', '$loc
         };
 
 
-       //datepickers
+        //datepickers
         $scope.minDate = new Date(2016, 0, 1);
         $scope.maxDate = new Date(2019, 11, 31);
 

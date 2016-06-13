@@ -1,35 +1,9 @@
-/*
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * openAUSIAS: The stunning micro-library that helps you to develop easily 
- *             AJAX web applications by using Java and jQuery
- * openAUSIAS is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/openAUSIAS
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 
 'use strict';
 
 //var appName = 'AjaxStockNg';
 
-var openAusias = angular.module('myApp', [
+var cuotaAfiliado = angular.module('myApp', [
     'ngRoute',
     'Filters',
     'Services',
@@ -45,25 +19,23 @@ var openAusias = angular.module('myApp', [
     'afiliadoControllers',
     'reciboControllers',
     'pagoControllers',
-    'pagoAfiliadoControllers',
+    'PagoAfiliadoControllers',
+    'ReciboAfiliadoControllers',
 //    'usuarioControllers',
 //    'tipodocumentoControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
 
-openAusias.config(['$routeProvider', function ($routeProvider) {
+cuotaAfiliado.config(['$routeProvider', function ($routeProvider) {
 
-        $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
-        //------------
-        $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
-        //------------       $routeProvider.when('/documento/view/:id', {templateUrl: 'js/documento/view.html', controller: 'DocumentoViewController'});       $routeProvider.when('/documento/new', {templateUrl: 'js/documento/new.html', controller: 'DocumentoNewController'});
+$routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
 
-        //------------
-        //$routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
-        $routeProvider.when('/empresa/view/:id', {templateUrl: 'js/empresa/view.html', controller: 'EmpresaViewController'});
-        $routeProvider.when('/empresa/new/', {templateUrl: 'js/empresa/new.html', controller: 'EmpresaNewController'});
-        $routeProvider.when('/empresa/edit/:id', {templateUrl: 'js/empresa/edit.html', controller: 'EmpresaEditController'});
+$routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
+
+$routeProvider.when('/empresa/view/:id', {templateUrl: 'js/empresa/view.html', controller: 'EmpresaViewController'});
+$routeProvider.when('/empresa/new/', {templateUrl: 'js/empresa/new.html', controller: 'EmpresaNewController'});
+$routeProvider.when('/empresa/edit/:id', {templateUrl: 'js/empresa/edit.html', controller: 'EmpresaEditController'});
         $routeProvider.when('/empresa/remove/:id', {templateUrl: 'js/empresa/remove.html', controller: 'EmpresaRemoveController'});
         $routeProvider.when('/empresa/plist/:page?/:rpp?', {templateUrl: 'js/empresa/plist.html', controller: 'EmpresaPListController'});
         $routeProvider.when('/empresa/selection/:page/:rpp', {templateUrl: 'js/empresa/selection.html', controller: 'EmpresaSelectionController'});
@@ -157,7 +129,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/recibo/remove/:id', {templateUrl: 'js/recibo/remove.html', controller: 'ReciboRemoveController'});
         $routeProvider.when('/recibo/view/:id', {templateUrl: 'js/recibo/view.html', controller: 'ReciboViewController'});
         $routeProvider.when('/recibo/plist/:page?/:rpp?', {templateUrl: 'js/recibo/plist.html', controller: 'ReciboPListController'});        
-        
+        $routeProvider.when('/reciboafiliado/plist/:page?/:rpp?/:id_recibo?', {templateUrl: 'js/reciboafiliado/plist.html', controller: 'ReciboAfiliadoPListController'});
         
         
         
@@ -183,7 +155,9 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/pagoAfiliado/plist/:page?/:rpp?/:id_afiliado?', {templateUrl: 'js/pagoAfiliado/plist.html', controller: 'PagoAfiliadoPListController'});
         $routeProvider.when('/pagoAfiliado/view/:id', {templateUrl: 'js/pagoAfiliado/view.html', controller: 'PagoAfiliadoViewController'});
         
-        
+        //Rutas reciboAfiliado
+        $routeProvider.when('/reciboAfiliado/plist/:page?/:rpp?/:id_recibo?', {templateUrl: 'js/reciboAfiliado/plist.html', controller: 'ReciboAfiliadoPListController'});
+        $routeProvider.when('/reciboAfiliado/view/:id', {templateUrl: 'js/reciboAfiliado/view.html', controller: 'ReciboAfiliadoViewController'});        
         
         
         
@@ -204,8 +178,8 @@ var moduloCuota = angular.module('cuotaControllers', []);
 var moduloAfiliado = angular.module('afiliadoControllers', []);
 var moduloRecibo = angular.module('reciboControllers', []);
 var moduloPago = angular.module('pagoControllers', []);
-var moduloPagoAfiliado = angular.module('pagoAfiliadoControllers', []);
-
+var moduloPagoAfiliado = angular.module('PagoAfiliadoControllers', []);
+var moduloReciboAfiliado = angular.module('ReciboAfiliadoControllers', []);
 
 
 //var moduloUsuario = angular.module('usuarioControllers', []);

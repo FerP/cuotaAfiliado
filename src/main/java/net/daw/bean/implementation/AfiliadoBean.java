@@ -21,6 +21,8 @@ public class AfiliadoBean implements GenericBean{
     @Expose
     private Integer id;
     @Expose
+    private String dni = "";
+    @Expose
     private String nombre = "";
     @Expose
     private String apellido1 = "";
@@ -31,7 +33,7 @@ public class AfiliadoBean implements GenericBean{
     @Expose
     private Date falta = new Date();
     @Expose
-    private Integer movil = 0;
+    private Integer telefono = 0;
     @Expose
     private String email = "";
     
@@ -75,7 +77,13 @@ public class AfiliadoBean implements GenericBean{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public String getDni() {
+        return dni;
+    }
 
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
     public String getApellido1() {
         return apellido1;
     }
@@ -110,12 +118,12 @@ public class AfiliadoBean implements GenericBean{
 
    
 
-    public Integer getMovil() {
-        return movil;
+    public Integer getTelefono() {
+        return telefono;
     }
 
-    public void setMovil(Integer movil) {
-        this.movil = movil;
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
     }
 
     public String getEmail() {
@@ -180,12 +188,13 @@ public class AfiliadoBean implements GenericBean{
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
+        strJson += "dni:" + EncodingUtilHelper.quotate(dni) + ",";
         strJson += "nombre:" + EncodingUtilHelper.quotate(nombre) + ",";
         strJson += "apellido1:" + EncodingUtilHelper.quotate(apellido1) + ",";
         strJson += "apellido2:" + EncodingUtilHelper.quotate(apellido2) + ",";
         strJson += "fnac:" + fnac + ",";
         strJson += "falta:" + falta + ",";
-        strJson += "movil:" + movil + ",";
+        strJson += "telefono:" + telefono + ",";
         strJson += "email:" + EncodingUtilHelper.quotate(email) + ",";
         strJson += "id_empresa:" + id_empresa + ",";
         strJson += "id_centro:" + id_centro + ",";
@@ -222,12 +231,13 @@ public class AfiliadoBean implements GenericBean{
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
+        strColumns += "dni,";
         strColumns += "nombre,";
         strColumns += "apellido1,";
         strColumns += "apellido2,";
         strColumns += "fnac,";
         strColumns += "falta,";
-        strColumns += "movil,";
+        strColumns += "telefono,";
         strColumns += "email,";   
         strColumns += "id_empresa,";
         strColumns += "id_centro,";
@@ -240,12 +250,13 @@ public class AfiliadoBean implements GenericBean{
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
+        strColumns += EncodingUtilHelper.quotate(dni)+ ",";
         strColumns += EncodingUtilHelper.quotate(nombre)+ ",";
         strColumns += EncodingUtilHelper.quotate(apellido1) + ",";      
         strColumns += EncodingUtilHelper.quotate(apellido2) + ",";
         strColumns += EncodingUtilHelper.stringifyAndQuotate(fnac) + ",";
         strColumns += EncodingUtilHelper.stringifyAndQuotate(falta)+ ",";      
-        strColumns += movil + ",";      
+        strColumns += telefono + ",";      
         strColumns += EncodingUtilHelper.quotate(email)+ ",";
         strColumns += id_empresa + ",";
         strColumns += id_centro + ",";
@@ -260,12 +271,13 @@ public class AfiliadoBean implements GenericBean{
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String strPairs = "";
         strPairs += "id=" + id + ",";
+        strPairs += "dni=" + EncodingUtilHelper.quotate(dni)+ ",";
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre)+ ",";
         strPairs += "apellido1=" + EncodingUtilHelper.quotate(apellido1)+ ",";
         strPairs += "apellido2=" + EncodingUtilHelper.quotate(apellido2) + ",";
         strPairs += "fnac=" + EncodingUtilHelper.quotate(format.format(fnac)) + ",";
         strPairs += "falta=" + EncodingUtilHelper.quotate(format.format(falta)) + ",";
-        strPairs += "movil=" + movil + ",";
+        strPairs += "telefono=" + telefono + ",";
         strPairs += "email=" + EncodingUtilHelper.quotate(email) + ",";
         strPairs += "id_empresa=" + id_empresa + ",";
         strPairs += "id_centro=" + id_centro + ",";
@@ -276,12 +288,13 @@ public class AfiliadoBean implements GenericBean{
     @Override
     public AfiliadoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
+        this.setDni(oResultSet.getString("dni"));
         this.setNombre(oResultSet.getString("nombre"));
         this.setApellido1(oResultSet.getString("apellido1"));
         this.setApellido2(oResultSet.getString("apellido2"));
         this.setFnac(oResultSet.getDate("fnac"));
         this.setFalta(oResultSet.getDate("falta"));
-        this.setMovil(oResultSet.getInt("movil"));
+        this.setTelefono(oResultSet.getInt("telefono"));
         this.setEmail(oResultSet.getString("email"));
         
         
